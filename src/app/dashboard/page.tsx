@@ -32,47 +32,56 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { ChevronsRight, CirclePlus } from "lucide-react"
 
 const cardList = [
   {
     title: "Interview scheduled",
     count: 12,
     imageSrc: "/Illustrations-1.png",
+    status: "pending"
   },
   {
-    title: "Candidates",
-    count: 5,
+    title: "Interview Feedback",
+    count: 52,
     imageSrc: "/Illustrations-2.png",
+    status: "pending"
   },
   {
-    title: "Jobs",
-    count: 3,
+    title: "Approval",
+    count: 33,
     imageSrc: "/Illustrations-3.png",
+    status: "pending"
   },
   {
-    title: "Offers",
-    count: 2,
+    title: "Offer Acceptance",
+    count: 23,
     imageSrc: "/Illustrations-4.png",
+    status: "pending"
   },
   {
-    title: "Hired",
-    count: 1,
+    title: "Documenations",
+    count: 10,
     imageSrc: "/Illustrations-5.png",
+    status: "pending"
   },
   {
-    title: "Rejected",
-    count: 4,
+    title: "Training",
+    count: 40,
     imageSrc: "/Illustrations-6.png",
+    status: "completed"
   },
   {
-    title: "On Hold",
-    count: 2,
+    title: "Supervisor Allocation",
+    count: 21,
     imageSrc: "/Illustrations-7.png",
+    status: "pending"
   },
   {
-    title: "Archived",
-    count: 0,
+    title: "Project Allocation",
+    count: 10,
     imageSrc: "/Illustrations-8.png",
+    status: "pending"
   }
 ];
 
@@ -261,7 +270,7 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 w-full bg-white shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-0">
+        <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-0">
           <div className="flex items-center gap-2 px-4 w-full">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -327,35 +336,51 @@ export default function Page() {
         <div className="flex flex-col md:flex-row gap-4 p-4 pt-4">
           <div className="flex flex-col gap-4 w-full md:w-4/5 pl-8">
             <div className="flex items-center justify-between mb-16">
-              <h1>Overview</h1>
+              <h1 className="text-[#071C50] font-[600] text-[22px]">Overview</h1>
               <div className="flex items-center gap-2">
-                <Button type="button" variant="default" className="">
-                  Add Candidate
+                <Button
+                  type="button"
+                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out"
+                >
+                  <CirclePlus /> Add Candidate
                 </Button>
-                <Button type="button" variant="default" className="">
-                  Add Job
+                <Button
+                  type="button"
+                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out">
+                  <CirclePlus /> Add Job
                 </Button>
               </div>
             </div>
 
             <div className="grid gap-8 md:grid-cols-4">
               {cardList.map((card, idx) => (
-                <Card key={card.title} className="w-full max-w-sm relative h-[167px] bg-[#F3F8FF]">
+                <Card
+                  key={card.title}
+                  className="w-full max-w-sm relative h-[167px] bg-[#F3F8FF] text-black/50 border-0 font-[400] hover:shadow-lg hover:bg-[#A0DBF457]/34 hover:font-semibold transition-shadow duration-300 ease-in-out group"
+                >
                   <CardContent className="flex flex-col items-center justify-center h-full">
-                    <p className="absolute -top-8 -left-4 px-8 py-4 border border-[#08277782]/50 rounded-3xl bg-white z-10 flex items-center justify-center text-2xl shadow">
+                    <p className="absolute -top-4 -left-4 px-6 py-6 border border-[#08277782]/50 rounded-3xl bg-[#F3F8FF] z-10 flex items-center justify-center text-2xl text-[#071C50] shadow transition-all duration-500 ease-in-out group-hover:bg-[#4B93E7] group-hover:text-white group-hover:scale-125 group-hover:-top-2 group-hover:-left-2 group-hover:shadow-lg">
                       {card.count}
                     </p>
                     <div className="flex flex-col justify-between h-full w-full">
                       <div className="flex justify-end">
                         <Image
                           width={86}
-                          height={86}
+                          height={90}
                           src={card.imageSrc}
                           alt={card.title}
-                          className="object-contain"
+                          className="w-20 h-20 object-contain"
                         />
                       </div>
-                      <p className="text-left text-lg font-medium self-start mb-0 w-1/2">{card.title}</p>
+                      <div className="text-left text-[14px] self-start mb-0">
+                        <div className="flex flex-row items-center justify-between w-4/5 group-hover:mt-2 transition-all duration-500">
+                          <div>{card.title} <span>{card.status}</span> </div>
+                        </div>
+                        {/* Animate ChevronsRight sliding from right-8 to right-4 on hover */}
+                        <ChevronsRight
+                          className="absolute bottom-4 right-12 opacity-0 group-hover:opacity-100 group-hover:right-4 transition-all duration-500"
+                        />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -383,7 +408,7 @@ export default function Page() {
             </div>
           </div>
           <div className="md:w-1/5 w-full bg-[#F3F8FF] p-4 rounded-sm">
-            <h1 className="font-[600] text-[#071C50]"> Upcoming Meetings </h1>
+            <h1 className="font-[600] text-[#071C50] text-[16px]"> Upcoming Meetings </h1>
 
             <div className="mt-6">
 
@@ -393,21 +418,21 @@ export default function Page() {
                 <div
                   key={meeting.id}
                   className={`flex flex-row justify-between items-center gap-x-1 ${meeting.status === "passed"
-                  ? "bg-[#B0F1B65C]/36 text-[#2B5708] border-r-4 border-[#2B5708]/50 hover:bg-green-300 hover:cursor-pointer"
-                  : "bg-[#A0DBF457]/34 text-[#1B5CBE] border-r-4 border-[#1B5CBE]/50 hover:bg-blue-300 hover:cursor-pointer"
-                  } font-[400] text-[10px] p-2 rounded-sm mb-1 transition-colors duration-300`}
+                    ? "bg-[#B0F1B65C]/36 text-[#2B5708] border-r-4 border-[#2B5708]/50 hover:bg-green-300 hover:cursor-pointer"
+                    : "bg-[#A0DBF457]/34 text-[#1B5CBE] border-r-4 border-[#1B5CBE]/50 hover:bg-blue-300 hover:cursor-pointer"
+                    } font-[400] text-[10px] p-2 rounded-sm mb-1 transition-colors duration-300`}
                 >
                   <span className="min-w-[8px] text-left font-bold">{meeting.time}</span>
                   <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-4">
-                  <div>
-                    <span className="font-bold">{meeting.candidate_name}</span>;{" "}
-                    <span>{meeting.position};</span>{" "}
-                    <span>{meeting.phase}</span>
-                  </div>
-                  <div>
-                    <span>{meeting.topic}</span>{" "}
-                    <span className="font-bold">| {meeting.duration}</span>
-                  </div>
+                    <div>
+                      <span className="font-bold">{meeting.candidate_name}</span>;{" "}
+                      <span>{meeting.position};</span>{" "}
+                      <span>{meeting.phase}</span>
+                    </div>
+                    <div>
+                      <span>{meeting.topic}</span>{" "}
+                      <span className="font-bold">| {meeting.duration}</span>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -16,7 +16,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.7153 0.2176 253.76);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: #F7AC258F;
+  --secondary: rgba(247, 172, 37, 0.56);
   --secondary-foreground: oklch(0.145 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -127,3 +127,14 @@ body {
   }
 }
 
+.auth-tab[data-state=active]::after{
+  content:'';
+  position:absolute;
+  bottom: -18px; 
+  left:0;
+  width: 40%;
+  height: 4px;
+  background-color: #F7AC25; 
+  border-radius: 5px;
+  /* transition: all 0.3s ease; */
+}

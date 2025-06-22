@@ -1,10 +1,13 @@
+'use client'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { motion, AnimatePresence } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from 'next/image';
+
 
 export function LoginForm({
   className,
@@ -36,28 +39,40 @@ export function LoginForm({
             />
           </div>
           <div className="flex flex-col items-center w-full">
-            <Tabs defaultValue="login" className="w-full max-w-sm">
-              <TabsList className="w-full flex">
-                <TabsTrigger value="login" className="flex-1">Login</TabsTrigger>
-                <TabsTrigger value="signup" className="flex-1">Sign Up</TabsTrigger>
+            <Tabs defaultValue="login" className="w-full max-w-sm bg-transparent">
+              <TabsList className="w-full flex bg-transparent">
+                <TabsTrigger value="login" className="flex-1 auth-tab relative  cursor-pointer focus:border-none focus:outline-none focus:ring-none data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none   text-[#DDEAFB] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light  text-[24px] bg-none ">
+                  Login
+                </TabsTrigger>
+                <TabsTrigger value="signup" className="flex-1 auth-tab relative  cursor-pointer focus:border-none focus:outline-none focus:ring-none  data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none   text-[#DDEAFB] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light  text-[24px] bg-none ">
+                  Sign Up
+                  </TabsTrigger>
               </TabsList>
-              <TabsContent value="login">
-                <form>
+              <div>
+                <AnimatePresence mode='wait'>
+                <TabsContent value="login" className="mt-[40px] ">
+                <motion.form
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.4 }}
+                className="w-full"
+                >
                   <div className="flex flex-col gap-6">
                     <div className="grid gap-3">
                       <div className="relative">
                         <input
                           type="email"
                           id="email_outlined"
-                          className="block px-2 pb-2 pt-3 w-full text-xs text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
+                          className="block px-2 pb-2 pt-3 w-full text-xs text-gray-900 bg-[#DDEAFB] rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer placeholder:text-[#082777]"
+                          placeholder="username"
                           required
                         />
                         <label
                           htmlFor="email_outlined"
-                          className="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-1 peer-focus:px-1 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                          className="absolute text-xs  text-[#082777] dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-2 z-10 origin-[0] bg-[#DDEAFB] dark:bg-[#DDEAFB] px-1 peer-focus:px-1 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                         >
-                          Email
+                          username
                         </label>
                       </div>
                     </div>
@@ -66,13 +81,13 @@ export function LoginForm({
                       <input
                         type="password"
                         id="password_outlined"
-                        className="block px-2 pb-2 pt-3 w-full text-xs text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "
+                        className="block px-2 pb-2 pt-3 w-full text-xs text-gray-900 bg-[#DDEAFB] rounded-lg border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer placeholder:text-[#082777]"
+                        placeholder="password "
                         required
                       />
                       <label
                         htmlFor="password_outlined"
-                        className="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-1 peer-focus:px-1 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                        className="absolute text-xs text-[#082777] dark:text-gray-400 bg-[#DDEAFB] duration-300 transform -translate-y-3 scale-75 top-2 z-10 origin-[0] bg- dark:bg-gray-900 px-1 peer-focus:px-1 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Password
                       </label>
@@ -93,7 +108,7 @@ export function LoginForm({
                         Forgot password?
                       </a>
                     </div>
-                    <Button type="submit" variant="secondary" className="w-full text-[#F3F8FF]">
+                    <Button type="submit" className="w-full cursor-pointer  bg-[rgba(247,172,37)] hover:bg-[rgba(250,178,37)] text-[#F3F8FF]">
                       Login
                     </Button>
                     <Button type="button" variant="default" className="w-full flex items-center gap-2">
@@ -106,10 +121,16 @@ export function LoginForm({
                       </svg>
                     </Button>
                   </div>
-                </form>
+                </motion.form>
               </TabsContent>
-              <TabsContent value="signup">
-                <form>
+              <TabsContent value="signup" className='mt-[40px]'>
+                <motion.form
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.4 }}
+                className="w-full"
+                >
                   <div className="flex flex-col gap-6">
                     <div className="relative">
                       <input
@@ -186,10 +207,10 @@ export function LoginForm({
                         Confirm Password
                       </label>
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full cursor-pointer bg-[rgba(247,172,37)] hover:bg-[rgba(250,178,37)]">
                       Sign Up
                     </Button>
-                    <Button variant="outline" type="button" className="w-full flex items-center gap-2">
+                    <Button variant="default" type="button" className="w-full flex items-center gap-2">
                       <span>Sign Up with Google</span>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
                         <path
@@ -199,8 +220,12 @@ export function LoginForm({
                       </svg>
                     </Button>
                   </div>
-                </form>
+                </motion.form>
               </TabsContent>
+                </AnimatePresence>
+              
+              </div>
+              
             </Tabs>
           </div>
         </CardContent>
