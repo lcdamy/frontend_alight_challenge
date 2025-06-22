@@ -93,10 +93,10 @@ export function LoginForm({
                         Forgot password?
                       </a>
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" variant="secondary" className="w-full text-[#F3F8FF]">
                       Login
                     </Button>
-                    <Button variant="outline" type="button" className="w-full flex items-center gap-2">
+                    <Button type="button" variant="default" className="w-full flex items-center gap-2">
                       <span>Login with Google</span>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
                         <path
