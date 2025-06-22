@@ -1,7 +1,9 @@
 "use client"
 import * as React from "react"
 import Image from 'next/image';
-
+import { usePathname } from "next/navigation";
+import Link from 'next/link'
+import {cn} from '@/lib/utils'
 import {
   Sidebar,
   SidebarContent,
@@ -12,9 +14,39 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+
+const tabs=[
+  {
+    title:'Home',
+    url:'',
+    icon:'/side-home-Icon.svg'
+},
+{
+  title:'Jobs',
+  url:'dashboard/jobs',
+  icon:'/side-job-Icon.svg'
+},
+{
+  title:'Candidates',
+  url:'dashboard/candidates',
+  icon:'/side-candidate-Icon.svg'
+},
+{
+  title:'Reports',
+  url:'dashboard/reports',
+  icon:'/side-calendar-Icon.svg'
+},
+{
+  title:'Calendar',
+  url:'dashboard/calendar',
+  icon:'/side-calendar-Icon.svg'
+},
+]
+
 export function AppSidebar() {
+  const pathName=usePathname();
   return (
-    <Sidebar className="bg-[#082777] text-white">
+    <Sidebar className="bg-[#082777] !rounded-[8px]   ">
       <SidebarContent>
         <SidebarGroup >
           <SidebarGroupLabel className="flex flex-col gap-2 items-center mt-4 mb-16">
@@ -28,52 +60,27 @@ export function AppSidebar() {
             </div>
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="flex flex-col gap-6 items-center justify-center">
-              <SidebarMenuItem className="flex flex-col items-center justify-center">
+            <SidebarMenu className="flex flex-col gap-6 justify-center ">
+              {tabs.map((tab)=>(
+                <Link href={tab.url} key={tab.title} className='relative group '>
+                <SidebarMenuItem  className={cn("flex flex-col items-center justify-center  text-[rgba(255,255,255,0.5)] group-hover:text-white",tab.title=='Home' && pathName.split('/').length==2 && ' text-white active-side-tab',tab.url.includes(pathName) && 'text-white active-side-tab' )}>
+                  {/* <span className='circle-right'></span> */}
                 <Image
-                  src="/side-home-Icon.svg"
+                  src={tab.icon}
                   alt="home icon"
                   width={24}
                   height={24}
+                  className={cn(
+                    'opacity-50 group-hover:opacity-100',
+                    ((tab.title === 'Home' && pathName.split('/').length === 2) || tab.url.includes(pathName)) && 'opacity-100',
+                  )}
                 />
-                <span>Home</span>
+                <span className='mt-3'>{tab.title}</span>
               </SidebarMenuItem>
-              <SidebarMenuItem  className="flex flex-col items-center justify-center">
-                <Image
-                  src="/side-job-Icon.svg"
-                  alt="home icon"
-                  width={24}
-                  height={24}
-                />
-                <span>Jobs</span>
-              </SidebarMenuItem>
-              <SidebarMenuItem  className="flex flex-col items-center justify-center">
-                <Image
-                  src="/side-candidate-Icon.svg"
-                  alt="home icon"
-                  width={24}
-                  height={24}
-                />
-                <span>Candidates</span>
-              </SidebarMenuItem>
-              <SidebarMenuItem className="flex flex-col items-center justify-center">
-                <Image
-                  src="/side-report-Icon.svg"
-                  alt="home icon"
-                  width={24}
-                  height={24}
-                />
-                <span>Reports</span>
-              </SidebarMenuItem>
-              <SidebarMenuItem  className="flex flex-col items-center justify-center">
-                <Image
-                  src="/side-calendar-Icon.svg"
-                  alt="home icon"
-                  width={24}
-                  height={24}
-                />
-                <span>Calendalar</span>
-              </SidebarMenuItem>
+                </Link>
+                
+              ))}
+              
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

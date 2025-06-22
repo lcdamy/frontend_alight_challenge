@@ -138,3 +138,34 @@ body {
   border-radius: 5px;
   /* transition: all 0.3s ease; */
 }
+.active-side-tab::after{
+  content:'';
+  position:absolute;
+  left:-0.5em;
+  height:100%;
+  width:8px;
+  border-right: 6px solid #F7AC25 ;
+  border-radius:8px;
+}
+.active-side-tab::before{
+  content:'';
+  position:absolute;
+  left:30%;
+  top:-10%;
+  height:1.5em;
+  width:1.5em;
+  background-color: #E7F1FF;
+  opacity: 0.4;
+  border-radius:50%;
+}
+/* .active-side-tab .circle-right{
+  content:'';
+  position:absolute;
+  right:20%;
+  bottom:0%;
+  height:1.5em;
+  width:1.5em;
+  background-color: #E7F1FF;
+  opacity: 0.4;
+  border-radius:50%;
+} */

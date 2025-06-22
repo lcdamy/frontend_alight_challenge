@@ -15,7 +15,15 @@ type LoginFormProps = {
 
 export function LoginForm({ className, activeTab, onTabChange, ...props }: LoginFormProps) {
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <AnimatePresence mode="wait">
+    <motion.div 
+      key='login-page'
+      initial={{ opacity: 0, y: 200 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.5 }} 
+      className={cn("flex flex-col gap-6", className)}
+      >
       <Card className="overflow-hidden px-4 py-8 sm:p-8 md:p-16 bg-[#E6EEF8] border-0 shadow-[0_10px_40px_10px_rgba(77,147,231,0.25)]">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-2">
@@ -55,7 +63,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
               </TabsList>
 
               <div>
-                <AnimatePresence mode="wait">
+                
                   <TabsContent value="login" className="mt-[40px]">
                     <motion.form
                       initial={{ opacity: 0, y: 40 }}
@@ -229,7 +237,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                       </div>
                     </motion.form>
                   </TabsContent>
-                </AnimatePresence>
+                
               </div>
             </Tabs>
           </div>
@@ -244,6 +252,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
         <div>Version 20.22.11</div>
         <div>© 2023–24 HRM and Services</div>
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   )
 }

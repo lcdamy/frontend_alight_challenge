@@ -24,7 +24,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import Image from 'next/image';
-import CustomTable from "@/app/dashboard/jobs/page"
+import JobTable, { CandidateTable, OnboardingTable } from "@/app/dashboard/jobs/page"
+
 import { Button } from "@/components/ui/button"
 import {
   Tabs,
@@ -33,6 +34,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { ChevronsRight, CirclePlus } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const cardList = [
   {
@@ -266,6 +268,10 @@ const Meetings = {
 
 
 export default function Page() {
+  const router = useRouter()
+  const logout = () => {
+    router.push('/login')
+  }
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -305,9 +311,7 @@ export default function Page() {
                   <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
                     <button
                       className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                      onClick={() => {
-                        // Add your logout logic here
-                      }}
+                      onClick={logout}
                     >
                       Logout
                     </button>
@@ -375,17 +379,18 @@ export default function Page() {
             </div>
             <div className="mt-4">
               <h1 className="text-[#071C50] font-[600] text[22px] mb-4">Require Attention</h1>
-              <Tabs defaultValue="Jobs">
+
+              <Tabs defaultValue="jobs">
                 <TabsList className="flex flex-wrap gap-2 bg-transparent text-[#071C50] font-[400]">
                   <TabsTrigger
-                    value="Jobs"
+                    value="jobs"
                     className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
                   >
                     Jobs
                   </TabsTrigger>
 
                   <TabsTrigger
-                    value="Candidates"
+                    value="candidates"
                     className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
                   >
                     Candidates
@@ -395,22 +400,25 @@ export default function Page() {
                     value="onboarding"
                     className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
                   >
-                    onboarding
+                    Onboarding
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="Jobs">
+                <TabsContent value="jobs">
                   <div className="overflow-x-auto">
-                    <CustomTable />
+                    <JobTable />
                   </div>
                 </TabsContent>
-                <TabsContent value="Candidates">
-                  454
+
+                <TabsContent value="candidates">
+                  <CandidateTable />
                 </TabsContent>
+
                 <TabsContent value="onboarding">
-                  787
+                  <OnboardingTable />
                 </TabsContent>
               </Tabs>
+
             </div>
           </div>
           <div className="lg:w-1/5 w-full bg-[#F3F8FF] p-2 sm:p-4 rounded-sm">
