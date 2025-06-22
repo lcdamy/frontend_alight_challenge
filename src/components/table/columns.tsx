@@ -1,5 +1,5 @@
 "use client"
-
+import type {Job,Candidate,Onboarding} from "@/lib/types"
 import { ColumnDef } from "@tanstack/react-table"
 import { EllipsisVertical } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -14,59 +14,13 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Job = {
-    id: string;
-    position: string;
-    positionLeft: number;
-    applicants: number;
-    interviewed: number;
-    rejected: number;
-    feedbackPending: number;
-    offered: number;
-    description: string;
-    requirements: string[];
-    responsabilities: string[];
-    applicationLink: string;
-    applicationDeadline: string;
-    status?: "open" | "closed";
-    createdAt?: string;
-    updatedAt?: string;
-    user?: unknown
-}
 
-export type Candidate = {
-    id: string;
-    names: string;
-    gender: "male" | "female";
-    email: string;
-    phoneNumber?: string;
-    title?: string;
-    linkedinURL?: string;
-    profileURL?: string;
-    tranings?: string;
-    documentation?: string;
-    supervisor?: string;
-    project?: string;
-    educations?: object[];
-    experiences?: object[];
-    createdAt?: string;
-    updatedAt?: string;
-}
-
-export type Onboarding = {
-    id: number
-    name: string
-    title: string
-    AppliedOn: string
-    interviewRound: string
-    assignedTo: string | null
-    score: number
-}
 
 export const jobColumns: ColumnDef<Job>[] = [
     {
         accessorKey: "position",
-        header: "Position",
+        header: "",
+        cell: ({ row }) => <span>{row.getValue("position")}</span>,
     },
     {
         accessorKey: "positionLeft",
@@ -131,14 +85,29 @@ export const jobColumns: ColumnDef<Job>[] = [
 export const candidateColumns: ColumnDef<Candidate>[] = [
     {
         accessorKey: "names",
-        header: "Name",
+        header: "",
+        cell: ({ row }) => <span>{row.getValue("names")}</span>,
     },
     {
-        accessorKey: "email",
-        header: "Email",
-        cell: ({ row }) => <span>{row.getValue("email")}</span>,
+        accessorKey: "tranings",
+        header: "Training",
+        cell: ({ row }) => <span>{row.getValue("tranings") || "-"}</span>,
     },
-
+    {
+        accessorKey: "documentation",
+        header: "Documentation",
+        cell: ({ row }) => <span>{row.getValue("documentation") || "-"}</span>,
+    },
+    {
+        accessorKey: "supervisor",
+        header: "Supervisor",
+        cell: ({ row }) => <span>{row.getValue("supervisor")}</span>,
+    },
+    {
+        accessorKey: "project",
+        header: "Project",
+        cell: ({ row }) => <span>{row.getValue("project") || "-"}</span>,
+    },
     {
         id: "actions",
         cell: ({ row }) => (
@@ -172,7 +141,8 @@ export const candidateColumns: ColumnDef<Candidate>[] = [
 export const onboardingColumns: ColumnDef<Onboarding>[] = [
     {
         accessorKey: "name",
-        header: "Name",
+        header: "",
+        cell: ({ row }) => <span>{row.getValue("name")}</span>,
     },
     {
         accessorKey: "title",

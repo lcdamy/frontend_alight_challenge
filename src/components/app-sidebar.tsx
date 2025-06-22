@@ -14,34 +14,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+import {tabs} from '@/lib/constants'
 
-const tabs=[
-  {
-    title:'Home',
-    url:'',
-    icon:'/side-home-Icon.svg'
-},
-{
-  title:'Jobs',
-  url:'dashboard/jobs',
-  icon:'/side-job-Icon.svg'
-},
-{
-  title:'Candidates',
-  url:'dashboard/candidates',
-  icon:'/side-candidate-Icon.svg'
-},
-{
-  title:'Reports',
-  url:'dashboard/reports',
-  icon:'/side-calendar-Icon.svg'
-},
-{
-  title:'Calendar',
-  url:'dashboard/calendar',
-  icon:'/side-calendar-Icon.svg'
-},
-]
+
 
 export function AppSidebar() {
   const pathName=usePathname();
@@ -62,23 +37,40 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu className="flex flex-col gap-6 justify-center ">
               {tabs.map((tab)=>(
-                <Link href={tab.url} key={tab.title} className='relative group '>
-                <SidebarMenuItem  className={cn("flex flex-col items-center justify-center  text-[rgba(255,255,255,0.5)] group-hover:text-white",tab.title=='Home' && pathName.split('/').length==2 && ' text-white active-side-tab',tab.url.includes(pathName) && 'text-white active-side-tab' )}>
-                  {/* <span className='circle-right'></span> */}
-                <Image
-                  src={tab.icon}
-                  alt="home icon"
-                  width={24}
-                  height={24}
+                <Link href={tab.url} key={tab.title} className='relative'>
+                <SidebarMenuItem
                   className={cn(
-                    'opacity-50 group-hover:opacity-100',
-                    ((tab.title === 'Home' && pathName.split('/').length === 2) || tab.url.includes(pathName)) && 'opacity-100',
-                  )}
-                />
-                <span className='mt-3'>{tab.title}</span>
+                    "flex flex-col items-center justify-center group/item",
+                  tab.title == 'Home' && pathName.split('/').length==2 && ' active-side-tab ',
+                      tab.title !== 'Home' && pathName.includes(tab.url)
+                      ? ' active-side-tab '
+                      : ''
+              )}
+                >
+                    <span className="circle-right" />
+                    <Image
+                    src={tab.icon}
+                    alt={`${tab.title} icon`}
+                    width={24}
+                    height={24}
+                    className={cn(
+                      'opacity-50 group-hover/item:opacity-100',
+                      ((tab.title === 'Home' && pathName.split('/').length ==2) ||
+                      (tab.title !== 'Home' && pathName.includes(tab.url)))
+                      && 'opacity-100'
+                    )}
+                    />
+                    <span
+                    className={cn(
+                      'mt-3 text-[rgba(255,255,255,0.5)] group-hover/item:text-white',
+                      tab.title=='Home' && pathName.split('/').length==2 && 'text-white',
+                      tab.title !=='Home' && pathName.includes(tab.url) && ' text-white' 
+                    )}
+                    >
+                    {tab.title}
+                    </span>
               </SidebarMenuItem>
                 </Link>
-                
               ))}
               
             </SidebarMenu>
