@@ -374,13 +374,31 @@ export default function Page() {
               ))}
             </div>
             <div className="mt-4">
-              <h1 className="text-base md:text-lg font-semibold mb-2">Require Attention</h1>
+              <h1 className="text-[#071C50] font-[600] text[22px] mb-4">Require Attention</h1>
               <Tabs defaultValue="Jobs">
-                <TabsList className="flex flex-wrap gap-2">
-                  <TabsTrigger value="Jobs">Jobs</TabsTrigger>
-                  <TabsTrigger value="Candidates">Candidates</TabsTrigger>
-                  <TabsTrigger value="onboarding">onboarding</TabsTrigger>
+                <TabsList className="flex flex-wrap gap-2 bg-transparent text-[#071C50] font-[400]">
+                  <TabsTrigger
+                    value="Jobs"
+                    className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
+                  >
+                    Jobs
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="Candidates"
+                    className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
+                  >
+                    Candidates
+                  </TabsTrigger>
+
+                  <TabsTrigger
+                    value="onboarding"
+                    className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=active]:border-b-[#F7AC25] data-[state=active]:font-[600] data-[state=active]:shadow-none transition-colors"
+                  >
+                    onboarding
+                  </TabsTrigger>
                 </TabsList>
+
                 <TabsContent value="Jobs">
                   <div className="overflow-x-auto">
                     <CustomTable />
