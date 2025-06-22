@@ -1,6 +1,6 @@
-import {DataTable} from '@/components/table/data-table'
-import {candidateColumns} from '@/components/table/columns'
-import {getCandidateData} from '@/services/candidates'
+import { DataTable } from '@/components/table/data-table'
+import { candidateColumns } from '@/components/table/columns'
+import { getCandidateData } from '@/services/candidates'
 
 export default async function DashboardCandidates() {
     const data = await getCandidateData()

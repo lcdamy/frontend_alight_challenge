@@ -16,54 +16,54 @@ type LoginFormProps = {
 export function LoginForm({ className, activeTab, onTabChange, ...props }: LoginFormProps) {
   return (
     <AnimatePresence mode="wait">
-    <motion.div 
-      key='login-page'
-      initial={{ opacity: 0, y: 200 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -40 }}
-      transition={{ duration: 0.5 }} 
-      className={cn("flex flex-col gap-6", className)}
+      <motion.div
+        key='login-page'
+        initial={{ opacity: 0, y: 200 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -40 }}
+        transition={{ duration: 0.5 }}
+        className={cn("flex flex-col gap-6", className)}
       >
-      <Card className="overflow-hidden px-4 py-8 sm:p-8 md:p-16 bg-[#E6EEF8] border-0 shadow-[0_10px_40px_10px_rgba(77,147,231,0.25)]">
-        <CardHeader className="text-center">
-          <div className="flex items-center justify-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={32}
-              height={32}
-              className="w-8 h-8 md:w-10 md:h-10 object-contain"
-            />
-            <h1 className="text-lg md:text-xl font-semibold">HR Management</h1>
-          </div>
-        </CardHeader>
-        <CardContent className="grid gap-8 md:grid-cols-2 p-0">
-          <div className="hidden md:flex items-center justify-center md:border-r md:border-gray-200">
-            <Image
-              src="/login-signup-image.png"
-              alt="Image"
-              width={200}
-              height={200}
-              className="w-40 h-40 md:w-48 md:h-48"
-            />
-          </div>
-          <div className="flex flex-col items-center w-full">
-            <Tabs
-              value={activeTab}
-              onValueChange={(val) => onTabChange(val as 'login' | 'signup')}
-              className="w-full max-w-sm bg-transparent"
-            >
-              <TabsList className="w-full flex bg-transparent">
-                <TabsTrigger value="login" className="flex-1 auth-tab relative cursor-pointer focus:border-none focus:outline-none focus:ring-none data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none text-[#9bbff0] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light text-[24px] bg-none ">
-                  Login
-                </TabsTrigger>
-                <TabsTrigger value="signup" className="flex-1 auth-tab relative cursor-pointer focus:border-none focus:outline-none focus:ring-none  data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none text-[#9bbff0] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light  text-[24px] bg-none ">
-                  Sign Up
-                </TabsTrigger>
-              </TabsList>
+        <Card className="overflow-hidden px-4 py-8 sm:p-8 md:p-16 bg-[#E6EEF8] border-0 shadow-[0_10px_40px_10px_rgba(77,147,231,0.25)]">
+          <CardHeader className="text-center">
+            <div className="flex items-center justify-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 md:w-10 md:h-10 object-contain"
+              />
+              <h1 className="text-lg md:text-xl font-semibold">HR Management</h1>
+            </div>
+          </CardHeader>
+          <CardContent className="grid gap-8 md:grid-cols-2 p-0">
+            <div className="hidden md:flex items-center justify-center md:border-r md:border-gray-200">
+              <Image
+                src="/login-signup-image.png"
+                alt="Image"
+                width={200}
+                height={200}
+                className="w-40 h-40 md:w-48 md:h-48"
+              />
+            </div>
+            <div className="flex flex-col items-center w-full">
+              <Tabs
+                value={activeTab}
+                onValueChange={(val) => onTabChange(val as 'login' | 'signup')}
+                className="w-full max-w-sm bg-transparent"
+              >
+                <TabsList className="w-full flex bg-transparent">
+                  <TabsTrigger value="login" className="flex-1 auth-tab relative cursor-pointer focus:border-none focus:outline-none focus:ring-none data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none text-[#9bbff0] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light text-[24px] bg-none ">
+                    Login
+                  </TabsTrigger>
+                  <TabsTrigger value="signup" className="flex-1 auth-tab relative cursor-pointer focus:border-none focus:outline-none focus:ring-none  data-[state=active]:border-none data-[state=active]:text-[#4B93E7] data-[state=active]:bg-transparent data-[state=active]:shadow-none text-[#9bbff0] data-[state=active]:font-semibold  data-[state=active]:text-[40px] font-light  text-[24px] bg-none ">
+                    Sign Up
+                  </TabsTrigger>
+                </TabsList>
 
-              <div>
-                
+                <div>
+
                   <TabsContent value="login" className="mt-[40px]">
                     <motion.form
                       initial={{ opacity: 0, y: 40 }}
@@ -237,22 +237,22 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                       </div>
                     </motion.form>
                   </TabsContent>
-                
-              </div>
-            </Tabs>
+
+                </div>
+              </Tabs>
+            </div>
+          </CardContent>
+        </Card>
+        <div className="text-center text-xs space-y-1 mt-4 text-[#4B93E7]">
+          <div>
+            <a href="#" className="hover:text-primary underline underline-offset-4 transition-colors">
+              Release Notes
+            </a>
           </div>
-        </CardContent>
-      </Card>
-      <div className="text-center text-xs space-y-1 mt-4 text-[#4B93E7]">
-        <div>
-          <a href="#" className="hover:text-primary underline underline-offset-4 transition-colors">
-            Release Notes
-          </a>
+          <div>Version 20.22.11</div>
+          <div>© 2023–24 HRM and Services</div>
         </div>
-        <div>Version 20.22.11</div>
-        <div>© 2023–24 HRM and Services</div>
-      </div>
-    </motion.div>
+      </motion.div>
     </AnimatePresence>
   )
 }

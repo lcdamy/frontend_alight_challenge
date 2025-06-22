@@ -3,7 +3,7 @@ import * as React from "react"
 import Image from 'next/image';
 import { usePathname } from "next/navigation";
 import Link from 'next/link'
-import {cn} from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import {
   Sidebar,
   SidebarContent,
@@ -14,12 +14,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-import {tabs} from '@/lib/constants'
+import { tabs } from '@/lib/constants'
 
 
 
 export function AppSidebar() {
-  const pathName=usePathname();
+  const pathName = usePathname();
   return (
     <Sidebar className="bg-[#082777] !rounded-[8px]   ">
       <SidebarContent>
@@ -36,43 +36,43 @@ export function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="flex flex-col gap-6 justify-center ">
-              {tabs.map((tab)=>(
+              {tabs.map((tab) => (
                 <Link href={tab.url} key={tab.title} className='relative'>
-                <SidebarMenuItem
-                  className={cn(
-                    "flex flex-col items-center justify-center group/item",
-                  tab.title == 'Home' && pathName.split('/').length==2 && ' active-side-tab ',
+                  <SidebarMenuItem
+                    className={cn(
+                      "flex flex-col items-center justify-center group/item",
+                      tab.title == 'Home' && pathName.split('/').length == 2 && ' active-side-tab ',
                       tab.title !== 'Home' && pathName.includes(tab.url)
-                      ? ' active-side-tab '
-                      : ''
-              )}
-                >
+                        ? ' active-side-tab '
+                        : ''
+                    )}
+                  >
                     <span className="circle-right" />
                     <Image
-                    src={tab.icon}
-                    alt={`${tab.title} icon`}
-                    width={24}
-                    height={24}
-                    className={cn(
-                      'opacity-50 group-hover/item:opacity-100',
-                      ((tab.title === 'Home' && pathName.split('/').length ==2) ||
-                      (tab.title !== 'Home' && pathName.includes(tab.url)))
-                      && 'opacity-100'
-                    )}
+                      src={tab.icon}
+                      alt={`${tab.title} icon`}
+                      width={24}
+                      height={24}
+                      className={cn(
+                        'opacity-50 group-hover/item:opacity-100',
+                        ((tab.title === 'Home' && pathName.split('/').length == 2) ||
+                          (tab.title !== 'Home' && pathName.includes(tab.url)))
+                        && 'opacity-100'
+                      )}
                     />
                     <span
-                    className={cn(
-                      'mt-3 text-[rgba(255,255,255,0.5)] group-hover/item:text-white',
-                      tab.title=='Home' && pathName.split('/').length==2 && 'text-white',
-                      tab.title !=='Home' && pathName.includes(tab.url) && ' text-white' 
-                    )}
+                      className={cn(
+                        'mt-3 text-[rgba(255,255,255,0.5)] group-hover/item:text-white',
+                        tab.title == 'Home' && pathName.split('/').length == 2 && 'text-white',
+                        tab.title !== 'Home' && pathName.includes(tab.url) && ' text-white'
+                      )}
                     >
-                    {tab.title}
+                      {tab.title}
                     </span>
-              </SidebarMenuItem>
+                  </SidebarMenuItem>
                 </Link>
               ))}
-              
+
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

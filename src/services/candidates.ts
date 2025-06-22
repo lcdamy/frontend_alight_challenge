@@ -1,4 +1,4 @@
-import {Candidate} from '@/lib/types'
+import { Candidate } from '@/lib/types'
 export function getCandidateData(): Candidate[] {
     // Fetch data from your API here.
     return [
