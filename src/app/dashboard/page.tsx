@@ -270,8 +270,8 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-0">
-          <div className="flex items-center gap-2 px-4 w-full">
+        <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-2 sm:px-4">
+          <div className="flex items-center gap-2 w-full">
             <SidebarTrigger className="-ml-1" />
             <Separator
               orientation="vertical"
@@ -283,7 +283,7 @@ export default function Page() {
               <input
                 type="text"
                 placeholder="Search..."
-                className="border rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="border rounded-md px-2 py-1 text-sm w-24 sm:w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-primary"
               />
 
               {/* Spacer to push avatar to the right */}
@@ -319,44 +319,32 @@ export default function Page() {
         </header>
         <div className="flex">
           {/* Breadcrumb in the center */}
-          {/* <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb> */}
         </div>
-        <div className="flex flex-col md:flex-row gap-4 p-4 pt-4">
-          <div className="flex flex-col gap-4 w-full md:w-4/5 pl-8">
-            <div className="flex items-center justify-between mb-16">
-              <h1 className="text-[#071C50] font-[600] text-[22px]">Overview</h1>
-              <div className="flex items-center gap-2">
+        <div className="flex flex-col lg:flex-row gap-4 p-2 sm:p-4 pt-4">
+          <div className="flex flex-col gap-4 w-full lg:w-4/5 pl-0 md:pl-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-16 gap-2">
+              <h1 className="text-[#071C50] font-[600] text-[18px] md:text-[22px]">Overview</h1>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                 <Button
                   type="button"
-                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out"
+                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out w-full sm:w-auto"
                 >
-                  <CirclePlus /> Add Candidate
+                  <CirclePlus /> <span>Add Candidate</span>
                 </Button>
                 <Button
                   type="button"
-                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out">
-                  <CirclePlus /> Add Job
+                  className="bg-[#4B93E7] text-white hover:bg-[#082777] hover:cursor-pointer transition-colors duration-200 ease-in-out w-full sm:w-auto"
+                >
+                  <CirclePlus /> <span>Add Job</span>
                 </Button>
               </div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-4">
+            <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {cardList.map((card, idx) => (
                 <Card
                   key={card.title}
-                  className="w-full max-w-sm relative h-[167px] bg-[#F3F8FF] text-black/50 border-0 font-[400] hover:shadow-lg hover:bg-[#A0DBF457]/34 hover:font-semibold transition-shadow duration-300 ease-in-out group"
+                  className="w-full max-w-full relative h-[167px] bg-[#F3F8FF] text-black/50 border-0 font-[400] hover:shadow-lg hover:bg-[#A0DBF457]/34 hover:font-semibold transition-shadow duration-300 ease-in-out group"
                 >
                   <CardContent className="flex flex-col items-center justify-center h-full">
                     <p className="absolute -top-4 -left-4 px-6 py-6 border border-[#08277782]/50 rounded-3xl bg-[#F3F8FF] z-10 flex items-center justify-center text-2xl text-[#071C50] shadow transition-all duration-500 ease-in-out group-hover:bg-[#4B93E7] group-hover:text-white group-hover:scale-125 group-hover:-top-2 group-hover:-left-2 group-hover:shadow-lg">
@@ -376,7 +364,6 @@ export default function Page() {
                         <div className="flex flex-row items-center justify-between w-4/5 group-hover:mt-2 transition-all duration-500">
                           <div>{card.title} <span>{card.status}</span> </div>
                         </div>
-                        {/* Animate ChevronsRight sliding from right-8 to right-4 on hover */}
                         <ChevronsRight
                           className="absolute bottom-4 right-12 opacity-0 group-hover:opacity-100 group-hover:right-4 transition-all duration-500"
                         />
@@ -385,18 +372,19 @@ export default function Page() {
                   </CardContent>
                 </Card>
               ))}
-
             </div>
-            <div >
-              <h1>Require Attention</h1>
+            <div className="mt-4">
+              <h1 className="text-base md:text-lg font-semibold mb-2">Require Attention</h1>
               <Tabs defaultValue="Jobs">
-                <TabsList>
+                <TabsList className="flex flex-wrap gap-2">
                   <TabsTrigger value="Jobs">Jobs</TabsTrigger>
                   <TabsTrigger value="Candidates">Candidates</TabsTrigger>
                   <TabsTrigger value="onboarding">onboarding</TabsTrigger>
                 </TabsList>
                 <TabsContent value="Jobs">
-                  <CustomTable />
+                  <div className="overflow-x-auto">
+                    <CustomTable />
+                  </div>
                 </TabsContent>
                 <TabsContent value="Candidates">
                   454
@@ -407,13 +395,10 @@ export default function Page() {
               </Tabs>
             </div>
           </div>
-          <div className="md:w-1/5 w-full bg-[#F3F8FF] p-4 rounded-sm">
+          <div className="lg:w-1/5 w-full bg-[#F3F8FF] p-2 sm:p-4 rounded-sm">
             <h1 className="font-[600] text-[#071C50] text-[16px]"> Upcoming Meetings </h1>
-
-            <div className="mt-6">
-
-              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-4">Today</h1>
-
+            <div className="mt-4 sm:mt-6">
+              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">Today</h1>
               {Meetings.today.map((meeting) => (
                 <div
                   key={meeting.id}
@@ -423,7 +408,7 @@ export default function Page() {
                     } font-[400] text-[10px] p-2 rounded-sm mb-1 transition-colors duration-300`}
                 >
                   <span className="min-w-[8px] text-left font-bold">{meeting.time}</span>
-                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-4">
+                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-2 sm:pl-4">
                     <div>
                       <span className="font-bold">{meeting.candidate_name}</span>;{" "}
                       <span>{meeting.position};</span>{" "}
@@ -436,13 +421,9 @@ export default function Page() {
                   </div>
                 </div>
               ))}
-
-
             </div>
-
-            <div className="mt-6">
-              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-4">Tomorrow</h1>
-
+            <div className="mt-4 sm:mt-6">
+              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">Tomorrow</h1>
               {Meetings.Tomorrow.map((meeting) => (
                 <div
                   key={meeting.id}
@@ -452,7 +433,7 @@ export default function Page() {
                     }  font-[400] text-[10px] p-2 rounded-md mb-1 transition-colors duration-300`}
                 >
                   <span className="min-w-[8px] text-left font-bold">{meeting.time}</span>
-                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-4">
+                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-2 sm:pl-4">
                     <div>
                       <span className="font-bold">{meeting.candidate_name}</span>; <span>{meeting.position};</span> <span>{meeting.phase}</span>
                     </div>
@@ -462,12 +443,9 @@ export default function Page() {
                   </div>
                 </div>
               ))}
-
             </div>
-
-            <div className="mt-6">
-              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-4">This week</h1>
-
+            <div className="mt-4 sm:mt-6">
+              <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">This week</h1>
               {Meetings.week.map((meeting) => (
                 <div
                   key={meeting.id}
@@ -477,7 +455,7 @@ export default function Page() {
                     }  font-[400] text-[10px] p-2 rounded-md mb-1 transition-colors duration-300`}
                 >
                   <span className="min-w-[8px] text-left font-bold">{meeting.time}</span>
-                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-4">
+                  <div className="flex-1 border-l border-[#1B5CBE70]/44 pl-2 sm:pl-4">
                     <div>
                       <span className="font-bold">{meeting.candidate_name}</span>; <span>{meeting.position};</span> <span>{meeting.phase}</span>
                     </div>
@@ -487,11 +465,7 @@ export default function Page() {
                   </div>
                 </div>
               ))}
-
-
             </div>
-
-
           </div>
         </div>
       </SidebarInset>
