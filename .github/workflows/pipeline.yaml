@@ -27,5 +27,5 @@ jobs:
         run: echo ${{ secrets.DOCKER_SECRET }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: push docker image to dockerhub
-        run: docker push lcdamy/frontend-alight-challeng:1.0
+        run: docker push lcdamy/frontend-alight-challenge:1.0
 
