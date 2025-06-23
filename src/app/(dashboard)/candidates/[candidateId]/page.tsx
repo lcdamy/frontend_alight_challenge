@@ -148,19 +148,21 @@ function page() {
                   <span>Candidate Files</span>
                   <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light">Edit</a>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex gap-3 mb-2">
                   {[{ name: 'Cover_letter.pdf', icon: "pdf.png" }, { name: 'My_resume.docx', icon: "word.png" }, { name: 'Oct_payslip.pdf', icon: "pdf.png" }, { name: 'Oct_payslip.pdf', icon: "pdf.png" }].map((file, idx) => (
                     <span key={idx} className="bg-[#E7F1FF]  px-2 sm:px-3 py-1.5 rounded-sm text-xs sm:text-sm flex items-center gap-2 border border-[#b6c3d4]">
                       <Image
                         src={`/${file.icon}`}
                         alt="File Icon"
-                        width={16}
-                        height={16}
-                        className="w-4 h-4"
+                        width={14}
+                        height={14}
                       />
                       <span className='text-[#071C50]'>{file.name}</span> <span className="text-xs text-[#071C50]/50">2d ago</span>
                     </span>
                   ))}
+                </div>
+                <div className="flex justify-end">
+                  <span className='text-[#7D9BE7] text-xs sm:text-sm font-light text-left '>View All</span>
                 </div>
 
                 {/* Last Experience */}
