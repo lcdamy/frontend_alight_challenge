@@ -241,7 +241,7 @@ export const tabs = [
   },
   {
     title: 'Candidates',
-    url: '/candidates',
+    url: '/candidates/1',
     icon: '/side-candidate-Icon.svg'
   },
   {
