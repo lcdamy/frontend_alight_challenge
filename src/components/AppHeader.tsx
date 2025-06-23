@@ -6,6 +6,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
+import { Search } from 'lucide-react';
 
 
 function AppHeader() {
@@ -23,12 +24,14 @@ function AppHeader() {
         />
 
         <div className="flex items-center justify-between w-full gap-2">
-          {/* Search box on the left */}
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border rounded-md px-2 py-1 text-sm w-24 sm:w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-primary"
-          />
+          <div className="flex items-center border bg-[#E5EDF970] rounded-md px-2 py-1 w-24 sm:w-40 md:w-89 focus-within:ring-2 focus-within:ring-primary">
+            <Search className="w-4 h-4 text-gray-400 mr-2" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="bg-transparent outline-none text-sm w-full"
+            />
+          </div>
 
           {/* Spacer to push avatar to the right */}
           <div className="flex-1" />

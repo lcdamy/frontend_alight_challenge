@@ -13,8 +13,8 @@ export function getCandidateData(): Candidate[] {
             "profileURL": "https://example.com/profiles/noahramirez",
             "tranings": "06/10",
             "documentation": "04/8",
-            "supervisor": "Victoria Clark",
-            "project": "Customer Support Portal",
+            "supervisor": null,
+            "project": null,
             "educations": [
                 {
                     "degree": "BSc Information Systems",
@@ -49,8 +49,8 @@ export function getCandidateData(): Candidate[] {
             "profileURL": "https://example.com/profiles/avaperez",
             "tranings": "07/10",
             "documentation": "05/8",
-            "supervisor": "Logan Scott",
-            "project": "ERP Implementation",
+            "supervisor": null,
+            "project": null,
             "educations": [
                 {
                     "degree": "BA Management",
@@ -122,7 +122,7 @@ export function getCandidateData(): Candidate[] {
             "tranings": "06/10",
             "documentation": "04/8",
             "supervisor": "Matthew King",
-            "project": "Documentation Overhaul",
+            "project": null,
             "educations": [
                 {
                     "degree": "BA English",

@@ -21,17 +21,19 @@ import { tabs } from '@/lib/constants'
 export function AppSidebar() {
   const pathName = usePathname();
   return (
-    <Sidebar className="bg-[#082777] !rounded-[8px]   ">
+    <Sidebar className="bg-[#082777] rounded-[8px]">
       <SidebarContent>
         <SidebarGroup >
           <SidebarGroupLabel className="flex flex-col gap-2 items-center mt-4 mb-16">
             <div className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="logo"
-                width={32}
-                height={32}
-              />
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="logo"
+                  width={32}
+                  height={32}
+                />
+              </Link>
             </div>
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -41,13 +43,9 @@ export function AppSidebar() {
                   <SidebarMenuItem
                     className={cn(
                       "flex flex-col items-center justify-center group/item",
-                      tab.title == 'Home' && pathName.split('/').length == 2 && ' active-side-tab ',
-                      tab.title !== 'Home' && pathName.includes(tab.url)
-                        ? ' active-side-tab '
-                        : ''
+                      pathName === tab.url && 'active-side-tab'
                     )}
                   >
-                    <span className="circle-right" />
                     <Image
                       src={tab.icon}
                       alt={`${tab.title} icon`}
@@ -55,16 +53,13 @@ export function AppSidebar() {
                       height={24}
                       className={cn(
                         'opacity-50 group-hover/item:opacity-100',
-                        ((tab.title === 'Home' && pathName.split('/').length == 2) ||
-                          (tab.title !== 'Home' && pathName.includes(tab.url)))
-                        && 'opacity-100'
+                        pathName === tab.url && 'opacity-100'
                       )}
                     />
                     <span
                       className={cn(
                         'mt-3 text-[rgba(255,255,255,0.5)] group-hover/item:text-white',
-                        tab.title == 'Home' && pathName.split('/').length == 2 && 'text-white',
-                        tab.title !== 'Home' && pathName.includes(tab.url) && ' text-white'
+                        pathName === tab.url && 'text-white'
                       )}
                     >
                       {tab.title}

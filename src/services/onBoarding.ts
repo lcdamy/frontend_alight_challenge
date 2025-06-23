@@ -7,7 +7,7 @@ export function getOnboardingData(): Onboarding[] {
             name: "Alice Johnson",
             title: "Frontend Developer",
             AppliedOn: "2024-01-15",
-            interviewRound: "Final",
+            interviewRound: "06/10",
             assignedTo: "John Doe",
             score: 85
         },
@@ -16,7 +16,7 @@ export function getOnboardingData(): Onboarding[] {
             name: "Bob Smith",
             title: "Backend Developer",
             AppliedOn: "2024-02-20",
-            interviewRound: "Technical",
+            interviewRound: "07/10",
             assignedTo: "Jane Doe",
             score: 90
         },
@@ -25,7 +25,7 @@ export function getOnboardingData(): Onboarding[] {
             name: "Carol Lee",
             title: "Data Analyst",
             AppliedOn: "2024-03-10",
-            interviewRound: "HR",
+            interviewRound: "06/10",
             assignedTo: "Mike Brown",
             score: 88
         }

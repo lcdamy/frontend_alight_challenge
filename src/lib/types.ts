@@ -29,8 +29,8 @@ export type Candidate = {
     profileURL?: string;
     tranings?: string;
     documentation?: string;
-    supervisor?: string;
-    project?: string;
+    supervisor?: string | null;
+    project?: string | null;
     educations?: object[];
     experiences?: object[];
     createdAt?: string;
