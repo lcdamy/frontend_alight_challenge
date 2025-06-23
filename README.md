@@ -1,7 +1,7 @@
-# QT-FRONTEND-CHALLENGE
+# ALIGHT-FRONTEND-CHALLENGE
 ## Description
 
-This is a client side for QT challenge
+This is a client side for ALIGHT challenge
 ## Prerequisite installation 
  
  -nodejs v18.18.0
@@ -10,8 +10,8 @@ This is a client side for QT challenge
 
 1. Clone the repository:
     ```bash
-    git@github.com:lcdamy/qt_challenge_frontend.git
-    cd qt_challenge_frontend
+    git@github.com:lcdamy/frontend_alight_challenge.git
+    cd frontend_alight_challenge
     ```
 
 2. Install dependencies:
@@ -45,4 +45,4 @@ The built files will be in the `dist` directory.
 ## Contributors
 
 - [lcdamy](https://www.linkedin.com/in/pierre-damien-murindangabo-cyuzuzo-709b53151/)
-# frontend_alight_challenge
+
