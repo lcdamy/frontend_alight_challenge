@@ -16,7 +16,7 @@ const CandidateHeader = () => {
                     </div>
                 </div>
                 <div className="flex items-center w-full sm:w-40 justify-between mt-2">
-                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline">Edit</a>
+                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline hover:text-[#6780c0]">Edit</a>
                     <a href="#">
                         <Image
                             src="/linkedin.png"
@@ -50,12 +50,12 @@ const CandidateHeader = () => {
             {/* Status Panel */}
             <div className="text-xs sm:text-sm border-t lg:border-t-0 lg:border-l pt-4 lg:pt-0 lg:pl-16 border-gray-200 space-y-2 w-full lg:w-1/5">
                 <div className="font-[600]"> Current Status</div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center hover:bg-[#071C50]/5 transition-colors duration-300 delay-100 px-1">
                     <span className='font-[400]'>Round</span>
                     <span className="bg-[#DDEAFB] font-[600] text-center w-24 sm:w-[142px] py-0.5 rounded-lg">Technical</span>
                 </div>
-                <div className="flex justify-between items-center ">
-                    <span className='font-[400]'>Assigned to</span>
+                <div className="flex justify-between items-center hover:bg-[#071C50]/5 transition-colors duration-300 delay-100 px-1">
+                    <span className='font-[400]'>Assigned</span>
                     <span className="flex items-center space-x-1">
                         <Image
                             src="/assign.png"
@@ -65,7 +65,7 @@ const CandidateHeader = () => {
                         />
                     </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center hover:bg-[#071C50]/5 transition-colors duration-300 delay-100 px-1">
                     <span className='font-[400]'> Interview Date</span>
                     <span className='text-[#071C50]/50 font-[600]' >Jul 30, 2024</span>
                 </div>

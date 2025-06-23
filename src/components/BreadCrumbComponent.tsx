@@ -24,7 +24,7 @@ const BreadCrumbComponent = () => {
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <Link href="/" className="flex items-center gap-2 text-sm text-[#071C50] cursor-pointer hover:text-[#082777] transition-colors data-[state=active]:bg-[#F3F8FF] mt-2 sm:mt-0" >
+            <Link href="/" className="flex items-center gap-2 text-sm text-[#071C50]/70 cursor-pointer hover:text-[#071C50] transition-colors data-[state=active]:bg-[#F3F8FF] mt-2 sm:mt-0" >
                 <MoveLeft />
                 Go Back
             </Link>

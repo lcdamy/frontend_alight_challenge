@@ -18,25 +18,25 @@ const CandidateContent = () => {
             <Tabs defaultValue="general">
                 <TabsList className="flex flex-wrap gap-2 bg-transparent ">
                     {/* ...TabsTrigger unchanged... */}
-                    <TabsTrigger value="general" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] ">
+                    <TabsTrigger value="general" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         General
                     </TabsTrigger>
-                    <TabsTrigger value="evaluation" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="evaluation" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Evaluation
                     </TabsTrigger>
-                    <TabsTrigger value="experience" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="experience" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Experience
                     </TabsTrigger>
-                    <TabsTrigger value="education" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="education" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Education
                     </TabsTrigger>
-                    <TabsTrigger value="events" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="events" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Events
                     </TabsTrigger>
-                    <TabsTrigger value="documents" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="documents" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Documents
                     </TabsTrigger>
-                    <TabsTrigger value="messages" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF]">
+                    <TabsTrigger value="messages" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         Messages
                     </TabsTrigger>
                 </TabsList>
@@ -48,30 +48,34 @@ const CandidateContent = () => {
                             {/* Candidate Files */}
                             <div className="flex flex-col sm:flex-row items-start sm:items-center text-xs sm:text-sm font-[600] mb-4 gap-2">
                                 <span>Candidate Files</span>
-                                <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light">Edit</a>
+                                <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light hover:text-[#6780c0]">Edit</a>
                             </div>
                             <div className="flex gap-3 mb-2">
                                 {candidateFiles.map((file, idx) => (
-                                    <span key={idx} className="bg-[#E7F1FF]  px-2 sm:px-3 py-1.5 rounded-sm text-xs sm:text-sm flex items-center gap-2 border border-[#b6c3d4]">
+                                    <span
+                                        key={idx}
+                                        className="bg-[#E7F1FF] hover:bg-[#c4d6f1] px-2 sm:px-3 py-1.5 rounded-sm text-xs sm:text-sm flex items-center gap-2 border border-[#b6c3d4] transition-colors duration-500"
+                                    >
                                         <Image
                                             src={`/${file.icon}`}
                                             alt="File Icon"
                                             width={14}
                                             height={14}
                                         />
-                                        <span className='text-[#071C50]'>{file.name}</span> <span className="text-xs text-[#071C50]/50">2d ago</span>
+                                        <span className='text-[#071C50]'>{file.name}</span>
+                                        <span className="text-xs text-[#071C50]/50">2d ago</span>
                                     </span>
                                 ))}
                             </div>
                             <div className="flex justify-end">
-                                <span className='text-[#7D9BE7] text-xs sm:text-sm font-light text-left hover:cursor-pointer'>View All</span>
+                                <span className='text-[#7D9BE7] text-xs sm:text-sm font-light text-left hover:cursor-pointer hover:text-[#6780c0]'>View All</span>
                             </div>
 
                             {/* Last Experience */}
                             <div>
                                 <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center text-xs sm:text-sm font-[600] mb-4">
                                     <span>Last Experience</span>
-                                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light">Edit</a>
+                                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light hover:text-[#6780c0]">Edit</a>
                                 </div>
                                 <div className="text-xs sm:text-sm">
 
@@ -87,7 +91,12 @@ const CandidateContent = () => {
                                             <h1 className='text-[#071C50]'>Responsible for;</h1>
                                             <ul className="list-decimal ml-6 mt-2 text-[#071C50]/50 text-[11px] sm:text-xs font-[500] leading-relaxed w-11/12">
                                                 {(Array.isArray(exp.responsibilities) ? exp.responsibilities : []).map((item, i) => (
-                                                    <li key={i}>{item}</li>
+                                                    <li
+                                                        key={i}
+                                                        className='hover:text-[#071C50] transition-colors duration-300 delay-100'
+                                                    >
+                                                        {item}
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -106,13 +115,13 @@ const CandidateContent = () => {
                                         <span className='font-[600]'> Score: &nbsp;</span>
                                         <span className="text-[#469607] font-[500]"> Potential Fit</span>
                                     </div>
-                                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline mt-1 inline-block">Edit</a>
+                                    <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline mt-1 inline-block hover:text-[#6780c0]">Edit</a>
                                 </div>
                             </div>
 
                             <div className="mt-8 sm:mt-16 space-y-2 text-[12px] sm:text-[14px] text-[#071C50]/80 font-[400] ">
                                 {candidateQualifications.map(([label, isPass], idx) => (
-                                    <div key={idx} className="flex justify-between items-center">
+                                    <div key={idx} className="flex justify-between items-center hover:bg-[#071C50]/5 px-1  transition-colors duration-300 delay-100">
                                         <span>{label}</span>
                                         <span className={`text-xl ${isPass ? 'text-[#4BD37B]' : 'text-red-500'}`}>
                                             {isPass ? '✔' : '✖'}
