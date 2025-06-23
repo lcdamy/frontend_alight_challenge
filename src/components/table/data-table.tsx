@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
                 <Table className="bg-[#F3F8FF]">
                     <TableHeader >
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id} >
+                            <TableRow key={headerGroup.id} className="hover:bg-transparent">
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead key={header.id} className="text-[#071C50]/50 font-[400] text-center">
@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
-                                    className="group"
+                                    className="group hover:bg-[#E7F1FF]"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id} className="text-center">

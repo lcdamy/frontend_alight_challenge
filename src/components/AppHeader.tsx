@@ -49,14 +49,20 @@ function AppHeader() {
                 />
                 <span className="hidden md:inline">Account</span>
               </summary>
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
+                <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => router.push('/profile')}
+                >
+                  Profile
+                </button>
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={logout}
                 >
                   Logout
                 </button>
-              </div>
+                </div>
             </details>
           </div>
         </div>
