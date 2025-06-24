@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { LoginForm } from "@/components/login-form"
 import { useLayoutEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const router = useRouter();
 
@@ -34,7 +34,9 @@ export default function LoginPage() {
       }}
     >
       <div className="w-full max-w-sm md:max-w-3xl">
-        <LoginForm activeTab={activeTab} onTabChange={setActiveTab} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginForm activeTab={activeTab} onTabChange={setActiveTab} />
+        </Suspense>
       </div>
     </div>
   )

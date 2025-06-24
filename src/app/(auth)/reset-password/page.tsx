@@ -1,7 +1,6 @@
 'use client'
-
-import { useState } from 'react'
 import { ResetForm } from "@/components/reset-form"
+import { Suspense } from 'react'
 
 export default function ResetPage() {
 
@@ -18,7 +17,9 @@ export default function ResetPage() {
             }}
         >
             <div className="w-full max-w-sm md:max-w-3xl">
-                <ResetForm />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ResetForm />
+                </Suspense>
             </div>
         </div>
     )
