@@ -17,7 +17,7 @@ export default function DashboardCandidates() {
     }).then((res) => res.json());
 
     const { data: candidates, error } = useSWR(
-        accessToken ? `${apiUrl}/candidate/list` : null,
+        accessToken ? `${apiUrl}/candidate/list?limit=1000` : null,
         fetcher
     );
 

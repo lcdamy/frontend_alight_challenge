@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Separator } from "@/components/ui/separator"
 import Image from 'next/image';
 import {
@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
 import { Search } from 'lucide-react';
-import { signOut } from 'next-auth/react'
+import { signOut, signIn } from 'next-auth/react'
 import { useSession } from 'next-auth/react';
 
 function AppHeader() {
@@ -16,6 +16,27 @@ function AppHeader() {
     signOut({ callbackUrl: '/login' })
   }
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    registerUser();
+  }, [session, status]);
+
+  const registerUser = async () => {
+    if (status === 'authenticated' && !session?.user?.token) {
+      try {
+        await signIn("credentials", {
+          redirect: false,
+          email: session.user.email,
+          firstName: session.user.name?.split(' ')[0] || '',
+          lastName: session.user.name?.split(' ')[1] || '',
+          mode: 'silent'
+        });//refresh the session to get the token
+      } catch (error) {
+        console.error('Error silence login user:', error);
+      }
+    }
+  };
+
 
   return (
     <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-2 sm:px-4">

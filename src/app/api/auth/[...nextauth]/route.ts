@@ -34,29 +34,29 @@ const handler = NextAuth({
             async authorize(credentials) {
                 try {
                     if (credentials && 'mode' in credentials && credentials.mode === 'silent') {
-                        const response1 = await fetch(`${apiUrl}/auth/get-refresh-token`, {
+                        const response = await fetch(`${apiUrl}/auth/social-token`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ email: credentials.email }),
+                            body: JSON.stringify({
+                                email: credentials.email,
+                                firstname: credentials.firstName,
+                                lastname: credentials.lastName,
+                                role: 'hr',
+                                profilePictureURL: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                            }),
                         });
-                        const data1 = await response1.json();
-                        if (!data1.success) throw new Error("Failed to get refresh token");
-
-                        const refresh_token = data1.data.token;
-                        const response2 = await fetch(`${apiUrl}/auth/refresh-token`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ token: refresh_token }),
-                        });
-                        const data2 = await response2.json();
-                        if (!data2.success) throw new Error("Failed to refresh token");
-
-                        const decodedToken = jwt.decode(data2.data.access_token) as jwt.JwtPayload;
-                        return { id: decodedToken?.id || "", email: decodedToken?.email, name: decodedToken?.name, token: data2.data.access_token };
+                        const data = await response.json();
+                        if (data.status !== "success") throw new Error("Failed to get refresh token");
+                        const decodedToken = jwt.decode(data.data.token) as jwt.JwtPayload;
+                        return {
+                            id: decodedToken?.id || "",
+                            email: decodedToken?.email,
+                            name: decodedToken?.names,
+                            image: decodedToken?.profilePictureURL || "",
+                            token: data.data.token
+                        };
                     } else {
                         const response = await fetch(`${apiUrl}/auth/login`, {
                             method: 'POST',
@@ -85,7 +85,9 @@ const handler = NextAuth({
             },
             credentials: {
                 email: { label: "Email", type: "text" },
-                password: { label: "Password", type: "password" }
+                password: { label: "Password", type: "password" },
+                firstName: { label: "First Name", type: "text", optional: true },
+                lastName: { label: "Last Name", type: "text", optional: true }
             }
         })
     ],

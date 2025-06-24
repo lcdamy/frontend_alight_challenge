@@ -17,7 +17,7 @@ export default function DashboardJobs() {
     }).then((res) => res.json());
 
     const { data: jobs, error, isLoading } = useSWR(
-        accessToken ? `${apiUrl}/job/list` : null,
+        accessToken ? `${apiUrl}/job/list?limit=1000` : null,
         fetcher
     );
 

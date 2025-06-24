@@ -492,7 +492,11 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                         <Button type="submit" className="w-full cursor-pointer bg-[rgba(247,172,37)] hover:bg-[rgba(250,178,37)]">
                           {loadingRegister ? "Signing up..." : "Sign Up"}
                         </Button>
-                        <Button type="button" className="w-full flex items-center gap-2 bg-[#4B93E7] hover:bg-accent-foreground text-[#F3F8FF]">
+                        <Button
+                          type="button"
+                          className="w-full cursor-pointer flex items-center gap-2 bg-[#4B93E7] hover:bg-accent-foreground text-[#F3F8FF]"
+                          onClick={() => signIn('google')}
+                        >
                           <span>Sign Up with Google</span>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
                             <path

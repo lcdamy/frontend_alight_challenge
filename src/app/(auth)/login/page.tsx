@@ -10,8 +10,8 @@ export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
   const { data: session, status } = useSession();
 
-    const router = useRouter();
-  
+  const router = useRouter();
+
   useLayoutEffect(() => {
     if (status === 'authenticated') {
       router.push('/');
