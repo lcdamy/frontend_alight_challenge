@@ -2,9 +2,21 @@
 
 import { useState } from 'react'
 import { LoginForm } from "@/components/login-form"
+import { useLayoutEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
+  const { data: session, status } = useSession();
+
+    const router = useRouter();
+  
+  useLayoutEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/');
+    }
+  }, [status, router]);
 
   const backgroundImage =
     activeTab === 'login'

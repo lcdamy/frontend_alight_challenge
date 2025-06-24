@@ -58,7 +58,7 @@ const handler = NextAuth({
                         const decodedToken = jwt.decode(data2.data.access_token) as jwt.JwtPayload;
                         return { id: decodedToken?.id || "", email: decodedToken?.email, name: decodedToken?.name, token: data2.data.access_token };
                     } else {
-                        const response = await fetch(`${apiUrl}/auth/signin`, {
+                        const response = await fetch(`${apiUrl}/auth/login`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -66,10 +66,17 @@ const handler = NextAuth({
                             body: JSON.stringify({ email: credentials?.email, password: credentials?.password }),
                         });
                         const data = await response.json();
-                        if (!data.success) throw new Error("Invalid credentials");
 
-                        const decodedToken = jwt.decode(data.data.access_token) as jwt.JwtPayload;
-                        return { id: decodedToken?.id || "", email: decodedToken?.email, name: decodedToken?.name, token: data.data.access_token };
+                        if (data.status !== "success") throw new Error("Invalid credentials");
+
+                        const decodedToken = jwt.decode(data.data.token) as jwt.JwtPayload;
+                        return {
+                            id: decodedToken?.id || "",
+                            email: decodedToken?.email,
+                            name: decodedToken?.names,
+                            image: decodedToken?.profilePictureURL || "",
+                            token: data.data.token
+                        };
                     }
                 } catch (error) {
                     console.error('An unexpected error happened:', error);

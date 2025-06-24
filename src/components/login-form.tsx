@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { signIn, useSession, getSession } from 'next-auth/react';
 
 
 type LoginFormProps = {
@@ -30,14 +31,14 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
   const [loadingRegister, setLoadingRegister] = useState(false);
   const [loadingForget, setLoadingForget] = useState(false);
 
+  const { data: session, status } = useSession();
+
   const searchParams = useSearchParams();
 
   const router = useRouter();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    console.log('LoginForm mounted');
-
     const token = searchParams.get('token');
     if (token) {
       activateAccount(token);
@@ -107,6 +108,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
       email,
       password
     });
+
     if (error) {
       toast.error(error.message);
       setLoadingLogin(false);
@@ -114,22 +116,22 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
     }
 
     try {
-      const response = await fetch(`${apiUrl}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+        mode: 'login',
       });
 
-      const data = await response.json();
-      if (data.status === 'success') {
+      if (result?.error) {
+        toast.error(result.error);
+        return;
+      } else {
         toast.success('Login successful!');
         router.push('/');
-      } else {
-        toast.error(data.message || 'Login failed');
       }
     } catch (error) {
       console.error('An unexpected error happened:', error);
-      toast.error('An unexpected error happened');
     } finally {
       setLoadingLogin(false);
     }
@@ -194,6 +196,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
       toast.error('An unexpected error happened');
     }
   }
+
 
   return (
     <AnimatePresence mode="wait">
@@ -337,7 +340,11 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                         <Button type="submit" className="w-full cursor-pointer  bg-[rgba(247,172,37)] hover:bg-[rgba(250,178,37)] text-[#F3F8FF]">
                           {loadingLogin ? "Logging in..." : "Login"}
                         </Button>
-                        <Button type="button" className="w-full flex items-center gap-2 bg-[#4B93E7] hover:bg-accent-foreground text-[#F3F8FF]">
+                        <Button
+                          type="button"
+                          className="w-full flex items-center cursor-pointer gap-2 bg-[#4B93E7] hover:bg-accent-foreground text-[#F3F8FF]"
+                          onClick={() => signIn('google')}
+                        >
                           <span>Login with Google</span>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
                             <path

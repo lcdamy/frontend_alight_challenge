@@ -7,13 +7,16 @@ import {
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
 import { Search } from 'lucide-react';
-
+import { signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react';
 
 function AppHeader() {
   const router = useRouter()
   const logout = () => {
-    router.push('/login')
+    signOut({ callbackUrl: '/login' })
   }
+  const { data: session, status } = useSession();
+
   return (
     <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-2 sm:px-4">
       <div className="flex items-center gap-2 w-full">
@@ -43,13 +46,13 @@ function AppHeader() {
                 <Image
                   width={32}
                   height={32}
-                  src="/profile.png"
+                  src={'/default-avatar.png'}
                   alt="User Avatar"
                   className="w-8 h-8 rounded-full border"
                 />
-                <span className="hidden md:inline">Account</span>
+                <span className="hidden md:inline"> {session?.user?.name} </span>
               </summary>
-                <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
+              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => router.push('/profile')}
@@ -62,7 +65,7 @@ function AppHeader() {
                 >
                   Logout
                 </button>
-                </div>
+              </div>
             </details>
           </div>
         </div>
