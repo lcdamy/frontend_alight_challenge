@@ -40,3 +40,17 @@ export const forgotPasswordSchema = Joi.object({
     'string.empty': 'Email is required',
   })
 });
+
+export const resetPasswordSchema = Joi.object({
+  password: Joi.string().min(6).required().messages({
+    'string.min': 'Password must be at least 6 characters',
+    'string.empty': 'Password is required',
+  }),
+  confirmPassword: Joi.any().valid(Joi.ref('password')).required().messages({
+    'any.only': 'Confirm password must match password',
+    'any.required': 'Confirm password is required',
+  }),
+  token: Joi.string().required().messages({
+    'string.empty': 'Token is required',
+  })
+});

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'
 import { registerSchema, loginSchema, forgotPasswordSchema } from '@/lib/validation'
 import { ToastContainer, toast } from 'react-toastify';
 import { MoveLeft } from 'lucide-react'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 
 type LoginFormProps = {
@@ -28,9 +30,19 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
   const [loadingRegister, setLoadingRegister] = useState(false);
   const [loadingForget, setLoadingForget] = useState(false);
 
+  const searchParams = useSearchParams();
 
   const router = useRouter();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  useEffect(() => {
+    console.log('LoginForm mounted');
+
+    const token = searchParams.get('token');
+    if (token) {
+      activateAccount(token);
+    }
+  }, [router]);
 
   const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -163,6 +175,26 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
     }
   }
 
+  const activateAccount = async (token: string) => {
+    try {
+      const response = await fetch(`${apiUrl}/auth/activate/${token}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await response.json();
+      if (data.status === 'success') {
+        toast.success('Account activated successfully!');
+        router.push('/login');
+      } else {
+        toast.error(data.message || 'Activation failed');
+      }
+    } catch (error) {
+      console.error('An unexpected error happened:', error);
+      toast.error('An unexpected error happened');
+    }
+  }
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -175,16 +207,18 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
       >
         <Card className="overflow-hidden px-4 py-8 sm:p-8 md:p-16 bg-[#E6EEF8] border-0 shadow-[0_10px_40px_10px_rgba(77,147,231,0.25)]">
           <CardHeader className="text-center">
-            <div className="flex items-center justify-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={32}
-                height={32}
-                className="w-8 h-8 md:w-10 md:h-10 object-contain"
-              />
-              <h1 className="text-lg md:text-xl font-semibold">HR Management</h1>
-            </div>
+            <Link href="/login">
+              <div className="flex items-center justify-center gap-2">
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 md:w-10 md:h-10 object-contain"
+                />
+                <h1 className="text-lg md:text-xl font-semibold">HR Management</h1>
+              </div>
+            </Link>
           </CardHeader>
           <CardContent className="grid gap-8 md:grid-cols-2 p-0">
             <div className="hidden md:flex items-center justify-center md:border-r md:border-gray-200">
@@ -280,6 +314,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                             )}
                           </button>
                         </div>
+
                         <div className="flex items-center justify-between mt-[-16px]">
                           <Label htmlFor="remember" className="text-xs">
                             <input
@@ -501,7 +536,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
                       </Button>
                       <div className="flex justify-end mt-[-16px] w-full">
                         <div
-                          className="flex items-center gap-2 text-sm text-[#071C50]/70 cursor-pointer hover:text-[#071C50] transition-colors data-[state=active]:bg-[#F3F8FF]"
+                          className="flex items-center hover:underline gap-2 text-xs text-[#071C50]/70 cursor-pointer hover:text-[#071C50] transition-colors data-[state=active]:bg-[#F3F8FF]"
                           onClick={(e) => {
                             e.preventDefault();
                             setShowForgotPassword(false);
