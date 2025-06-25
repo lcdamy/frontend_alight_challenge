@@ -6,6 +6,7 @@ import { ChevronsRight } from "lucide-react"
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 import type { CardItem } from "@/lib/types";
+import { Skeleton } from "@/components/ui/skeleton"
 
 function Overviewcards() {
   const { data: session, status } = useSession();
@@ -26,8 +27,16 @@ function Overviewcards() {
 
   if (isLoading || status === 'loading') {
     return (
-      <div className="container mx-auto flex justify-center items-center h-64">
-        <span>Loading...</span>
+      <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, idx) => (
+            <Card key={idx} className="w-full max-w-[370px] relative h-[167px] bg-[#F3F8FF] text-black/50 border-0 font-[400]">
+            <CardContent className="flex flex-col items-center justify-center h-full">
+              <Skeleton className="h-12 w-12 mb-4" />
+              <Skeleton className="h-6 w-3/4 mb-2" />
+              <Skeleton className="h-6 w-1/2" />
+            </CardContent>
+            </Card>
+        ))}
       </div>
     );
   }

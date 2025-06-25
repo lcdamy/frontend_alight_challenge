@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { ChevronDown, Search } from 'lucide-react';
 import { signOut, signIn } from 'next-auth/react'
 import { useSession } from 'next-auth/react';
+import { Skeleton } from "@/components/ui/skeleton"
 
 function AppHeader() {
   const router = useRouter()
@@ -37,6 +38,29 @@ function AppHeader() {
     }
   };
 
+  if (status === 'loading') {
+    return (
+      <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-2 sm:px-4">
+        <div className="flex items-center gap-2 w-full">
+          {/* Sidebar trigger skeleton */}
+          <Skeleton className="w-8 h-8 rounded" />
+          <Separator
+        orientation="vertical"
+        className="mr-2 data-[orientation=vertical]:h-4"
+          />
+          <div className="flex items-center justify-between w-full gap-2">
+        {/* Search bar skeleton */}
+        <Skeleton className="h-8 w-40" />
+        <div className="flex-1" />
+        {/* Avatar skeleton */}
+        <Skeleton className="w-8 h-8 rounded-full" />
+        {/* Name skeleton */}
+        <Skeleton className="h-6 w-24 ml-2 hidden md:inline-block" />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="flex h-16 w-full bg-white border-b border-[#0827773D]/24 shadow-md shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-2 sm:px-4">
