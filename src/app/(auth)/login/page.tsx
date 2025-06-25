@@ -33,7 +33,7 @@ export default function LoginPage() {
           initial={{ x: '-100%', y: '-100%', opacity: 0 }}
           animate={{ x: '-50%', y: '-50%', opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="absolute top-1/2 left-1/2 h-[75%] object-contain pointer-events-none select-none z-0"
+          className="absolute top-1/2 left-1/2 h-[70%] object-contain pointer-events-none select-none z-0"
         />
 
         <motion.img
@@ -42,7 +42,7 @@ export default function LoginPage() {
           initial={{ x: '100%', y: '-100%', opacity: 0 }}
           animate={{ x: '-50%', y: '-50%', opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="absolute top-1/2 left-1/2 h-[75%] object-contain pointer-events-none select-none z-0"
+          className="absolute top-1/2 left-1/2 h-[80%] object-contain pointer-events-none select-none z-0"
         />
       </AnimatePresence>
 
