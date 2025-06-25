@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Separator } from "@/components/ui/separator"
 import Image from 'next/image';
 import {
@@ -45,17 +45,17 @@ function AppHeader() {
           {/* Sidebar trigger skeleton */}
           <Skeleton className="w-8 h-8 rounded" />
           <Separator
-        orientation="vertical"
-        className="mr-2 data-[orientation=vertical]:h-4"
+            orientation="vertical"
+            className="mr-2 data-[orientation=vertical]:h-4"
           />
           <div className="flex items-center justify-between w-full gap-2">
-        {/* Search bar skeleton */}
-        <Skeleton className="h-8 w-40" />
-        <div className="flex-1" />
-        {/* Avatar skeleton */}
-        <Skeleton className="w-8 h-8 rounded-full" />
-        {/* Name skeleton */}
-        <Skeleton className="h-6 w-24 ml-2 hidden md:inline-block" />
+            {/* Search bar skeleton */}
+            <Skeleton className="h-8 w-40" />
+            <div className="flex-1" />
+            {/* Avatar skeleton */}
+            <Skeleton className="w-8 h-8 rounded-full" />
+            {/* Name skeleton */}
+            <Skeleton className="h-6 w-24 ml-2 hidden md:inline-block" />
           </div>
         </div>
       </header>
