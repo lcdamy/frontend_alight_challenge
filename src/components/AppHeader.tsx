@@ -6,7 +6,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
-import { Search } from 'lucide-react';
+import { ChevronDown, Search } from 'lucide-react';
 import { signOut, signIn } from 'next-auth/react'
 import { useSession } from 'next-auth/react';
 
@@ -67,21 +67,22 @@ function AppHeader() {
                 <Image
                   width={32}
                   height={32}
-                  src={'/default-avatar.png'}
+                  src='https://rci-files.lon1.digitaloceanspaces.com/rci-files/1750843685670-149071.png'
                   alt="User Avatar"
                   className="w-8 h-8 rounded-full border"
                 />
-                <span className="hidden md:inline"> {session?.user?.name} </span>
+                <span className="hidden md:inline text-[#071C50] font-[600] text-sm"> {session?.user?.name} </span>
+                <ChevronDown className='text-[#071C50]/50' />
               </summary>
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10">
+              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg z-10 ">
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                  onClick={() => router.push('/profile')}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => router.push('#')}
                 >
                   Profile
                 </button>
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={logout}
                 >
                   Logout

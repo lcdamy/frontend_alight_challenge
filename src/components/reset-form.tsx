@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { resetPasswordSchema } from '@/lib/validation'
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -102,7 +102,11 @@ export function ResetForm() {
                             />
                         </div>
                         <div className="flex flex-col items-center w-full">
-                            <ToastContainer />
+                            <div>
+                                <Toaster
+                                    position="top-right"
+                                />
+                            </div>
 
                             <div className='flex flex-col items-center w-full'>
                                 <h1 className="text-[#4B93E7] font-semibold text-[24px] mb-4 ">

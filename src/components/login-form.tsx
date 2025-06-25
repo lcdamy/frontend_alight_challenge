@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { registerSchema, loginSchema, forgotPasswordSchema } from '@/lib/validation'
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -232,9 +232,11 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
               />
             </div>
             <div className="flex flex-col items-center w-full">
-              <ToastContainer />
-
-
+              <div>
+                <Toaster
+                  position="top-right"
+                />
+              </div>
               {!showForgotPassword && (
                 <Tabs
                   value={activeTab}

@@ -30,6 +30,7 @@ export type Candidate = {
     tranings?: string;
     documentation?: string;
     supervisor?: string | null;
+    supervisorProfile?: string | null;
     project?: string | null;
     educations?: object[];
     experiences?: object[];
@@ -45,4 +46,22 @@ export type Onboarding = {
     interviewRound: string
     assignedTo: string | null
     score: number
+}
+
+export type CardItem = {
+    title: string;
+    count: number;
+    status: string;
+    imageSrc: string;
+}
+
+export type MeetingItem = {
+    id: number;
+    topic: string;
+    candidate_name: string;
+    position: string;
+    phase: string;
+    time: string;
+    duration: string;
+    status: "scheduled" | "passed" | "cancelled";
 }

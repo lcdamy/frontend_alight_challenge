@@ -1,14 +1,49 @@
 import React from 'react'
-import { Meetings } from '@/lib/constants'
+import useSWR from 'swr';
+import { useSession } from 'next-auth/react';
+import { MeetingItem } from '@/lib/types';
 
 
 function MeetingsSchedule() {
+  const { data: session, status } = useSession();
+
+  const accessToken = session?.user?.token;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const fetcher = (url: string) => fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+    }
+  }).then((res) => res.json());
+
+  const { data: Meetings, error, isLoading } = useSWR(
+    accessToken ? `${apiUrl}/mock/meetings` : null,
+    fetcher
+  );
+
+  if (isLoading || status === 'loading') {
+    return (
+      <div className="container mx-auto flex justify-center items-center h-64">
+        <span>Loading...</span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto flex justify-center items-center h-64">
+        <span>Error loading data.</span>
+      </div>
+    );
+  }
+
+
   return (
     <div className="lg:w-1/5 w-full bg-[#F3F8FF] p-2 sm:p-4 rounded-sm">
       <h1 className="font-[600] text-[#071C50] text-[16px]"> Upcoming Meetings </h1>
       <div className="mt-4 sm:mt-6">
         <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">Today</h1>
-        {Meetings.today.map((meeting) => (
+        {Meetings?.data?.today?.map((meeting: MeetingItem) => (
           <div
             key={meeting.id}
             className={`flex flex-row justify-between items-center gap-x-1 ${meeting.status === "passed"
@@ -33,7 +68,7 @@ function MeetingsSchedule() {
       </div>
       <div className="mt-4 sm:mt-6">
         <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">Tomorrow</h1>
-        {Meetings.Tomorrow.map((meeting) => (
+        {Meetings?.data?.Tomorrow?.map((meeting: MeetingItem) => (
           <div
             key={meeting.id}
             className={`flex flex-row justify-between items-center gap-1 ${meeting.status === "passed"
@@ -55,7 +90,7 @@ function MeetingsSchedule() {
       </div>
       <div className="mt-4 sm:mt-6">
         <h1 className="font-[600] text-xs text-[#071C50] opacity-50 mb-2 sm:mb-4">This week</h1>
-        {Meetings.week.map((meeting) => (
+        {Meetings?.data?.week?.map((meeting: MeetingItem) => (
           <div
             key={meeting.id}
             className={`flex flex-row justify-between items-center gap-1 ${meeting.status === "passed"

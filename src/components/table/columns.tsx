@@ -117,7 +117,7 @@ export const candidateColumns: ColumnDef<Candidate>[] = [
         cell: ({ row }) => (
             <div className="flex items-center gap-4">
                 <Image
-                    src={"/default-avatar.png"}
+                    src={row.original.profileURL || "/default-avatar.png"}
                     alt={row.getValue("names")}
                     width={30}
                     height={30}
@@ -169,7 +169,7 @@ export const candidateColumns: ColumnDef<Candidate>[] = [
                 <div className="flex justify-center">
                     <span className="flex items-center gap-2 py-1 px-2 rounded-md w-38 bg-[#DDEAFB] text-[#071C50]">
                         <Image
-                            src="/default-avatar.png"
+                            src={row.original.supervisorProfile || "/default-avatar.png"}
                             alt={row.getValue("supervisor")}
                             width={24}
                             height={24}
