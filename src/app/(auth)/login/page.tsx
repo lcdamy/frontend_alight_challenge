@@ -1,39 +1,53 @@
 'use client'
-
-import { Suspense, useState } from 'react'
-import { LoginForm } from "@/components/login-form"
-import { useLayoutEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useLayoutEffect, useState } from 'react'
+import { LoginForm } from '@/components/login-form'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
-  const { status } = useSession();
-
-  const router = useRouter();
+  const { status } = useSession()
+  const router = useRouter()
 
   useLayoutEffect(() => {
     if (status === 'authenticated') {
-      router.push('/');
+      router.push('/')
     }
-  }, [status, router]);
+  }, [status, router])
 
-  const backgroundImage =
+  const images =
     activeTab === 'login'
-      ? "url('/Vector-login-2.png'), url('/Vector-login-1.png')"
-      : "url('/Vector-signup-2.png'), url('/Vector-signup-1.png')"
+      ? ['/Vector-login-2.png', '/Vector-login-1.png']
+      : ['/Vector-signup-2.png', '/Vector-signup-1.png']
 
   return (
-    <div
-      className="bg-[#E5EDF9] flex min-h-svh flex-col items-center justify-center p-6 md:p-10 transition-all duration-300 ease-in-out"
-      style={{
-        backgroundImage,
-        backgroundSize: "50%, 50%",
-        backgroundRepeat: "no-repeat, no-repeat",
-        backgroundPosition: "center, center",
-      }}
-    >
-      <div className="w-full max-w-sm md:max-w-3xl">
+    <div className="relative bg-[#E5EDF9] flex min-h-svh flex-col items-center justify-center overflow-hidden p-6 md:p-10">
+      {/* Animated background images */}
+      <AnimatePresence mode="wait">
+        {/* Left image (from top-left to center) */}
+        <motion.img
+         
+          src={images[0]}
+          alt=""
+          initial={{ x: '-100%', y: '-100%', opacity: 0 }}
+          animate={{ x: '-50%', y: '-50%', opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute top-1/2 left-1/2 h-[75%] object-contain pointer-events-none select-none z-0"
+        />
+
+        <motion.img
+          src={images[1]}
+          alt=""
+          initial={{ x: '100%', y: '-100%', opacity: 0 }}
+          animate={{ x: '-50%', y: '-50%', opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="absolute top-1/2 left-1/2 h-[75%] object-contain pointer-events-none select-none z-0"
+        />
+      </AnimatePresence>
+
+      {/* Form section */}
+      <div className="relative z-10 w-full max-w-sm md:max-w-3xl">
         <Suspense fallback={<div>Loading...</div>}>
           <LoginForm activeTab={activeTab} onTabChange={setActiveTab} />
         </Suspense>

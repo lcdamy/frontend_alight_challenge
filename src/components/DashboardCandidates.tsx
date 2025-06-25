@@ -1,28 +1,12 @@
-'use client';
+'use client'
 import { DataTable } from '@/components/table/data-table'
 import { candidateColumns } from '@/components/table/columns'
-import useSWR from 'swr';
-import { useSession } from 'next-auth/react';
 import { Skeleton } from "@/components/ui/skeleton"
-
+import { useGetCandidates } from '@/hooks/useGetCandidates';
 export default function DashboardCandidates() {
-    const { data: session, status } = useSession();
+    const { candidates, error, isLoading, sessionStatus } = useGetCandidates()
 
-    const accessToken = session?.user?.token;
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-    const fetcher = (url: string) => fetch(url, {
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-        }
-    }).then((res) => res.json());
-
-    const { data: candidates, error } = useSWR(
-        accessToken ? `${apiUrl}/candidate/list?limit=1000` : null,
-        fetcher
-    );
-
-    if (!candidates && !error) {
+    if (isLoading || sessionStatus == 'loading') {
         return (
             <div className="container mx-auto flex justify-center items-center h-64 mt-24">
                 <div className="w-full">

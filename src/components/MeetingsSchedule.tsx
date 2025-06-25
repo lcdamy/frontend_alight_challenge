@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';

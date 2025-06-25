@@ -1,27 +1,10 @@
 'use client'
 import { DataTable } from '@/components/table/data-table'
 import { jobColumns } from '@/components/table/columns'
-import useSWR from 'swr';
-import { useSession } from 'next-auth/react';
 import { Skeleton } from "@/components/ui/skeleton"
-
+import { useGetJobs } from '@/hooks/useGetJobs';
 export default function DashboardJobs() {
-    const { data: session, status } = useSession();
-
-    const accessToken = session?.user?.token;
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-    const fetcher = (url: string) => fetch(url, {
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-        }
-    }).then((res) => res.json());
-
-    const { data: jobs, error, isLoading } = useSWR(
-        accessToken ? `${apiUrl}/job/list?limit=1000` : null,
-        fetcher
-    );
-
+    const { jobs, isLoading, error, sessionStatus: status } = useGetJobs()
     if (isLoading || status === 'loading') {
         return (
             <div className="container mx-auto flex justify-center items-center h-64 mt-24">
@@ -44,7 +27,6 @@ export default function DashboardJobs() {
             </div>
         );
     }
-
     if (error) {
         return (
             <div className="container mx-auto flex justify-center items-center h-64">
@@ -52,7 +34,6 @@ export default function DashboardJobs() {
             </div>
         );
     }
-
     return (
         <div className="container mx-auto">
             <DataTable columns={jobColumns} data={jobs?.data?.data || []} />

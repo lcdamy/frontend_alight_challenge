@@ -103,7 +103,10 @@ function AppHeader() {
                   className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => router.push('#')}
                 >
-                  Profile
+                  <span className="hidden md:block">
+                    Profile
+                  </span>
+                    <span className="block md:hidden">{session?.user?.name}</span>
                 </button>
                 <button
                   className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
