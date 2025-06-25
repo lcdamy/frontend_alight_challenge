@@ -59,7 +59,8 @@ export function AppSidebar() {
                     <span
                       className={cn(
                         'mt-3 text-[rgba(255,255,255,0.5)] group-hover/item:text-white',
-                        pathName === tab.url && 'text-white'
+                        pathName === tab.url && 'text-white',
+                        'hidden sm:inline' // Hide on small screens, show on >=sm
                       )}
                     >
                       {tab.title}

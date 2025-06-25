@@ -72,7 +72,7 @@ function AppHeader() {
         />
 
         <div className="flex items-center justify-between w-full gap-2">
-          <div className="flex items-center border bg-[#E5EDF970] rounded-md px-2 py-1 w-24 sm:w-40 md:w-89 focus-within:ring-2 focus-within:ring-primary">
+          <div className="flex items-center border bg-[#E5EDF970] rounded-md px-2 py-1 w-30 sm:w-40 md:w-89 focus-within:ring-2 focus-within:ring-primary">
             <Search className="w-4 h-4 text-gray-400 mr-2" />
             <input
               type="text"

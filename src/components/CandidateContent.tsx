@@ -6,17 +6,33 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import Image from 'next/image';
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 import { Separator } from "@/components/ui/separator"
 import ScoreIndicator from '@/components/circular';
 import { candidateExperience, candidateFiles, candidateQualifications } from '@/lib/constants';
+import { ChevronDown } from 'lucide-react';
 
 const CandidateContent = () => {
     return (
         <div className="bg-[#F3F8FF] rounded-lg p-4 sm:p-6 shadow-sm">
             {/* Tabs */}
             <Tabs defaultValue="general">
-                <TabsList className="flex flex-wrap gap-2 bg-transparent ">
+                <TabsList className="flex flex-wrap gap-2 bg-transparent hidden lg:flex">
                     {/* ...TabsTrigger unchanged... */}
                     <TabsTrigger value="general" className="cursor-pointer shadow-none outline-none ring-0 rounded-none border-b-4 border-transparent data-[state=inactive]:text-[#071C50]/50 font-[400] data-[state=active]:font-[600] data-[state=inactive]:font-[400] data-[state=active]:border-b-[#F7AC25] data-[state=active]:shadow-none transition-colors data-[state=active]:bg-[#F3F8FF] data-[state=inactive]:hover:text-[#071C50]/70">
                         General
@@ -40,7 +56,53 @@ const CandidateContent = () => {
                         Messages
                     </TabsTrigger>
                 </TabsList>
-                <Separator className="" />
+
+                {/* Mobile-only Dropdown Tabs */}
+                <div className="flex lg:hidden justify-end">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button size="sm" className='bg-[#071C50] rounded-sm'> General <ChevronDown /></Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-32 bg-[#F3F8FF] text-[#071C50]/30" align="start">
+                            <DropdownMenuGroup className='bg-[#F3F8FF]'>
+                                {[
+                                    { value: "general", label: "General" },
+                                    { value: "evaluation", label: "Evaluation" },
+                                    { value: "experience", label: "Experience" },
+                                    { value: "education", label: "Education" },
+                                    { value: "events", label: "Events" },
+                                    { value: "documents", label: "Documents" },
+                                    { value: "messages", label: "Messages" },
+                                ].map(({ value, label }) => (
+                                    <DropdownMenuItem
+                                        asChild
+                                        key={value}
+                                        className={value === "general" ? 'rounded-none' : undefined}
+                                    >
+                                        <button
+                                            type="button"
+                                            className={
+                                                value === "general"
+                                                    ? "text-[#071C50]/70 font-[500] border-l-4 border-[#F7AC258F] rounded-none"
+                                                    : undefined
+                                            }
+                                            onClick={() => {
+                                                const tabsRoot = document.querySelector('[role="tablist"]')?.parentElement;
+                                                if (tabsRoot) {
+                                                    const tab = tabsRoot.querySelector(`[role="tab"][data-state][data-value="${value}"]`) as HTMLElement;
+                                                    if (tab) tab.click();
+                                                }
+                                            }}
+                                        >
+                                            {label}
+                                        </button>
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                <Separator className="hidden lg:block" />
                 <TabsContent value="general" className='mt-4'>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Left Column */}
@@ -50,11 +112,12 @@ const CandidateContent = () => {
                                 <span>Candidate Files</span>
                                 <a href="#" className="text-[#7D9BE7] text-xs sm:text-sm underline font-light hover:text-[#6780c0]">Edit</a>
                             </div>
-                            <div className="flex gap-3 mb-2">
+                            <div className="flex flex-wrap gap-3 mb-2">
                                 {candidateFiles.map((file, idx) => (
                                     <span
                                         key={idx}
-                                        className="bg-[#E7F1FF] hover:bg-[#c4d6f1] px-2 sm:px-3 py-1.5 rounded-sm text-xs sm:text-sm flex items-center gap-2 border border-[#b6c3d4] transition-colors duration-500"
+                                        className="bg-[#E7F1FF] hover:bg-[#c4d6f1] px-2 sm:px-3 py-1.5 rounded-sm text-xs sm:text-sm flex items-center gap-2 border border-[#b6c3d4] transition-colors duration-500 break-all"
+                                        style={{ minWidth: '120px' }}
                                     >
                                         <Image
                                             src={`/${file.icon}`}
