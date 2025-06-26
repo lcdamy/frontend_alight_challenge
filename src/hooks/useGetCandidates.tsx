@@ -15,7 +15,7 @@ export function useGetCandidates() {
     }).then((res) => res.json());
 
     const { data: candidates, error, isLoading } = useSWR(
-        accessToken ? `${apiUrl}/candidate/list?limit=1000` : null,
+        accessToken ? `${apiUrl}/api/v1/candidate/list?limit=1000` : null,
         fetcher
     );
     return {

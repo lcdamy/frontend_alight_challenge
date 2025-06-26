@@ -19,7 +19,7 @@ export default function DashboardOnBoarding() {
     }).then((res) => res.json());
 
     const { data: onboardings, error, isLoading } = useSWR(
-        accessToken ? `${apiUrl}/mock/onboarding` : null,
+        accessToken ? `${apiUrl}/api/v1/mock/onboarding` : null,
         fetcher
     );
 

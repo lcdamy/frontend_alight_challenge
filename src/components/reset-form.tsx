@@ -45,7 +45,7 @@ export function ResetForm() {
         }
 
         try {
-            const response = await fetch(`${apiUrl}/auth/reset-password`, {
+            const response = await fetch(`${apiUrl}/api/v1/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ newPassword: password, token }),

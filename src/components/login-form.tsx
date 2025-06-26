@@ -66,7 +66,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
       return;
     }
     try {
-      const response = await fetch(`${apiUrl}/auth/register`, {
+      const response = await fetch(`${apiUrl}/api/v1/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -154,7 +154,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
       return;
     }
     try {
-      const response = await fetch(`${apiUrl}/auth/forgot-password`, {
+      const response = await fetch(`${apiUrl}/api/v1/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -177,7 +177,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
 
   const activateAccount = async (token: string) => {
     try {
-      const response = await fetch(`${apiUrl}/auth/activate/${token}`, {
+      const response = await fetch(`${apiUrl}/api/v1/auth/activate/${token}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });

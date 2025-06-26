@@ -21,7 +21,7 @@ function Overviewcards() {
   }).then((res) => res.json());
 
   const { data: cardList, error, isLoading } = useSWR(
-    accessToken ? `${apiUrl}/mock/overview` : null,
+    accessToken ? `${apiUrl}/api/v1/mock/overview` : null,
     fetcher
   );
 

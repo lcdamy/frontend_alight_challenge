@@ -19,7 +19,7 @@ function MeetingsSchedule() {
   }).then((res) => res.json());
 
   const { data: Meetings, error, isLoading } = useSWR(
-    accessToken ? `${apiUrl}/mock/meetings` : null,
+    accessToken ? `${apiUrl}/api/v1/mock/meetings` : null,
     fetcher
   );
 

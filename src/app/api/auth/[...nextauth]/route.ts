@@ -34,7 +34,7 @@ const handler = NextAuth({
             async authorize(credentials) {
                 try {
                     if (credentials && 'mode' in credentials && credentials.mode === 'silent') {
-                        const response = await fetch(`${apiUrl}/auth/social-token`, {
+                        const response = await fetch(`${apiUrl}/api/v1/auth/social-token`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const handler = NextAuth({
                             token: data.data.token
                         };
                     } else {
-                        const response = await fetch(`${apiUrl}/auth/login`, {
+                        const response = await fetch(`${apiUrl}/api/v1/auth/login`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

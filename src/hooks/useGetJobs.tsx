@@ -15,7 +15,7 @@ export function useGetJobs() {
   }).then((res) => res.json());
 
   const { data: jobs, error, isLoading } = useSWR(
-    accessToken ? `${apiUrl}/job/list?limit=1000` : null,
+    accessToken ? `${apiUrl}/api/v1/job/list?limit=1000` : null,
     fetcher
   );
 
