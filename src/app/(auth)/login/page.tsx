@@ -4,6 +4,7 @@ import { LoginForm } from '@/components/login-form'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Loader2Icon } from 'lucide-react'
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
@@ -27,7 +28,7 @@ export default function LoginPage() {
       <AnimatePresence mode="wait">
         {/* Left image (from top-left to center) */}
         <motion.img
-         
+
           src={images[0]}
           alt=""
           initial={{ x: '-100%', y: '-100%', opacity: 0 }}
@@ -48,7 +49,9 @@ export default function LoginPage() {
 
       {/* Form section */}
       <div className="relative z-10 w-full max-w-sm md:max-w-3xl">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className='min-h-screen flex flex-col items-center justify-center'>
+          <Loader2Icon className='animate-spin rotate ' />
+        </div>}>
           <LoginForm activeTab={activeTab} onTabChange={setActiveTab} />
         </Suspense>
       </div>

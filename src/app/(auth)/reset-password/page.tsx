@@ -1,6 +1,7 @@
 'use client'
 import { ResetForm } from "@/components/reset-form"
 import { Suspense } from 'react'
+import { Loader2Icon } from 'lucide-react'
 
 export default function ResetPage() {
 
@@ -17,7 +18,9 @@ export default function ResetPage() {
             }}
         >
             <div className="w-full max-w-sm md:max-w-3xl">
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div className='min-h-screen flex flex-col items-center justify-center'>
+                    <Loader2Icon className='animate-spin rotate ' />
+                </div>}>
                     <ResetForm />
                 </Suspense>
             </div>
