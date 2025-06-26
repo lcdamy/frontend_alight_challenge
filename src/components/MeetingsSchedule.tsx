@@ -79,7 +79,15 @@ function MeetingsSchedule() {
   if (error) {
     return (
       <div className="container mx-auto flex justify-center items-center h-64">
-        <span>Error loading data.</span>
+        <div className="flex flex-col items-center">
+          <svg className="w-12 h-12 text-red-500 mb-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+            <line x1="12" y1="8" x2="12" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+          </svg>
+          <span className="text-red-600 font-semibold text-lg">Error loading meetings</span>
+          <span className="text-gray-500 mt-1 text-sm">Please try refreshing the page or check your connection.</span>
+        </div>
       </div>
     );
   }
