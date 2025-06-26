@@ -38,7 +38,7 @@ export default function DashboardCandidates() {
                         <line x1="12" y1="8" x2="12" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                         <circle cx="12" cy="16" r="1" fill="currentColor"/>
                     </svg>
-                    <span className="text-red-600 font-semibold text-lg">Error loading candidates</span>
+                    <span className="text-red-600 font-light text-lg">Error loading candidates</span>
                     <span className="text-gray-500 mt-1 text-sm">Please try refreshing the page or check your connection.</span>
                 </div>
             </div>
