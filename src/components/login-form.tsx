@@ -35,6 +35,7 @@ export function LoginForm({ className, activeTab, onTabChange, ...props }: Login
 
   const router = useRouter();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  console.log("---------------------> line 38 apiUrl", apiUrl);
 
   useEffect(() => {
     const token = searchParams.get('token');
